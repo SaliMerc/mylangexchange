@@ -10,16 +10,27 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
     <title>My Language Exchange</title>
+    <style>
+        @font-face {
+          font-family: 'Ghakity';
+          src: url("{% static 'fonts/Ghakity.otf' %}");
+          font-weight: normal;
+          font-style: normal;
+}
+        body{
+            font-family: 'Ghakity';
+        }
+    </style>
 </head>
 <body>
 <div class="container-fluid">
 {#navigation and hero section starts here#}
 <header>
-    <div class="hero" style="background-image: url('{% static 'images/main-hero-background.svg' %}'); background-size: cover; background-repeat: no-repeat;">
-    <nav class="row">
+    <div {% block hero-style %}class="hero"  style="background-image: url('{% static 'images/main-hero-background.svg' %}'); background-size: cover; background-repeat: no-repeat;" {% endblock %}>
+    <nav class="row justify-content-between">
        <div class="logo col-md-7">
            <div class="logo-item">
-                <img src="{% static 'images/mle-logo.svg' %}" alt="logo" class="img-fluid logo-img">
+               <a href="{% url 'index' %}"><img src="{% static 'images/mle-logo.svg' %}" alt="logo" class="img-fluid logo-img"></a>
            </div>
           <div class="menu-items">
                <img src="{% static 'images/open.svg' %}" alt="open" id="open-menu" class="img-fluid">
@@ -28,12 +39,12 @@
        </div>
         <div class="col-md-5 list-div" id="list-div">
          <ul class="list">
-            <li><a href="">Home</a></li>
-            <li><a href="">About</a></li>
-            <li><a href="">Services</a></li>
+            <li><a href="{% url 'index' %}">Home</a></li>
+            <li><a href="{% url 'index' %}#about-content">About</a></li>
+            <li><a href="{% url 'index' %}#services">Services</a></li>
             <li><a href="">Blog</a></li>
-            <li><a href="">Contact</a></li>
-            <li><a href="" class="sign-in-btn">Sign In</a></li>
+            <li><a href="{% url 'index' %}#contact">Contact</a></li>
+            <li><a href="{% url 'login' %}" class="sign-in-btn">Sign In</a></li>
          </ul>
         </div>
     </nav>
@@ -48,10 +59,10 @@
 <footer>
     <div class="row">
         <div class="col-md-10">
-             <p>&copy;<script>document.write(new Date().getFullYear())</script> My Language Exchange</p>
+             <a>&copy;<script>document.write(new Date().getFullYear())</script> My Language Exchange</a>
         </div>
         <div class="col-md-2">
-            <p><a href="">Privacy Policy</a></p>
+            <a href="" class="privacy">Privacy Policy</a>
         </div>
     </div>
 </footer>

@@ -1,0 +1,31 @@
+{% extends 'base-main.html' %}
+{% load static %}
+{% block hero-style %} class="other" style="background-color: #8F5932;" {% endblock %}
+{% block content %}
+    <section class=" d-flex flex-column align-items-center">
+    <form action="" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+        <h2> <span class="a-link">Signup</span> Here</h2>
+        <label for="name">Full Name</label>
+        <input type="text" id="name" class="form-control sign-in-btn-new" placeholder="First Last Name" name="full-name">
+        <label for="email">Email</label>
+        <input type="email" id="email" class="form-control sign-in-btn-new" placeholder="Email Address" name="email">
+        <label for="country">Country</label>
+        <input type="text" id="country" class="form-control sign-in-btn-new" placeholder="Country" name="country">
+        <label for="password">Password</label>
+        <input type="password" id="password" class="form-control sign-in-btn-new" placeholder="Password" name="password">
+        <label for="cpassword">Confirm Password</label>
+        <input type="password" id="cpassword" class="form-control sign-in-btn-new" placeholder="Confirm Password" name="c-password">
+
+        <button type="submit" class="sign-in-btn-new mt-5 btn pe-5 ps-5">Sign Up</button>
+        <div class="row mt-5">
+            <div class="col-md-4">
+                <p>Already have an account?</p>
+            </div>
+             <div class="col-md-4">
+                 <a href="{% url 'login' %}"><p class="a-link">Login</p></a>
+            </div>
+        </div>
+    </form>
+    </section>
+{% endblock %}

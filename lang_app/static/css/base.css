@@ -6,13 +6,32 @@ a{
     text-decoration: none;
     color: black;
 }
+h2,h3{
+    color: #E3E0C0;
+    letter-spacing: 0.2rem;
+}
+h2{
+    font-size: 2.5rem;
+    font-weight: 700;
+}
+h3{
+    font-size: 1.8rem;
+    font-weight: 600;
+}
+p{
+    font-size: 1.4rem;
+    color: #E3E0C0;
+}
 .hero{
     min-height: 100vh;
 }
 nav{
     padding-top: 2rem;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #E3E0C0;
+    align-items: center;
 }
-
 ul{
     list-style: none;
 }
@@ -33,16 +52,93 @@ li a{
 }
 .sign-in-btn{
     background-color: #FBEC6C;
-    padding: 0.5rem 1rem 0.5rem 1rem;
+    padding: 0.5rem 2rem 0.5rem 2rem;
     border-radius: 1rem 1rem 0 1rem;
     box-shadow: 0.3rem 1.5rem 1rem #453021;
     color: #000000;
 }
+.sign-in-btn-new{
+    background-color: #FBEC6C;
+    padding: 0.5rem 1rem 0.5rem 1rem;
+    border-radius: 1rem 1rem 0 1rem;
+    box-shadow: 0.3rem 1.5rem 1rem #453021;
+    color: #000000;
+    font-weight: 600;
+    font-size: 1.2rem;
+}
+.sign-in-btn-new:hover{
+    border: none;
+    color: #E3E0C0;
+    background-color: #8F5932;
+}
+
+
 footer{
     /*margin-top: 75vh;*/
     color: #E3E0C0;
 }
-@media (max-width: 768px){
+#hero-content{
+    margin-top: 20vh;
+    max-width: 65%;
+}
+#hero-content h1{
+    font-size: 4rem;
+    font-weight: 700;
+    color: #FBEC6C;
+    letter-spacing: 0.4rem;
+}
+#hero-content p{
+    padding-top: 1rem;
+    font-size: 1.8rem;
+    font-weight: 600;
+    letter-spacing: 0.2rem;
+    background: linear-gradient(to right, #FBEC6C, #E3E0C0);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;}
+
+.white-heading{
+    color: #E3E0C0;
+}
+#about-content{
+    max-width: 50%;
+}
+#about-content .about-text{
+    color: #FBEC6C;
+}
+.service{
+    min-height: 40vh;
+}
+.contact-icons{
+    max-width: 3.5rem;
+    max-height: 3.5rem;
+}
+.privacy{
+    color: #E3E0C0;
+}
+form{
+    min-width: 60%;
+    min-height: 100vh;
+}
+form label{
+    padding-top: 1.5rem;
+    color: #000000;
+    font-weight: 600;
+    font-size: 1.2rem;
+}
+.form-control{
+    margin-top: 0.6rem;
+}
+.form-control:focus{
+    outline: none !important;
+    border:none !important;
+    background-color: #FBEC6C;
+    box-shadow: none;
+
+}
+.a-link{
+    color: #FBEC6C;
+}
+@media (max-width: 900px){
     /*navbar styling starts*/
     .nav-icon-img{
     display: block;
@@ -71,7 +167,7 @@ footer{
     .logo{
         margin-top: 1rem;
         display: flex;
-        align-items: center;
+        /*align-items: center;*/
         justify-content: space-between;
     }
     .logo-img{
@@ -86,4 +182,11 @@ footer{
         display: none;
     }
     /*navbar styling ends*/
+    #hero-content{
+        margin-top: 0;
+        max-width: 100%;
+}
+    #about-content{
+        max-width: 100%;
+}
 }

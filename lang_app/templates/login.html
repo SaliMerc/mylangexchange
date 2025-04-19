@@ -1,0 +1,27 @@
+{% extends 'base-main.html' %}
+{% load static %}
+{% block hero-style %} class="other" style="background-color: #8F5932;" {% endblock %}
+{% block content %}
+    <section class=" d-flex flex-column align-items-center">
+    <form action="" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+        <h2> <span class="a-link">Login</span> Here</h2>
+        <label for="email">Email</label>
+        <input type="email" id="email" class="form-control sign-in-btn-new" placeholder="Email Address" name="email">
+        <label for="password">Password</label>
+        <input type="password" id="password" class="form-control sign-in-btn-new" placeholder="Password" name="password">
+        <button type="submit" class="sign-in-btn-new mt-5 btn pe-5 ps-5">Login</button>
+          <div class="mt-5">
+            <a href="{% url 'forgotten-pass' %}"><p>Forgotten Password?</p></a>
+        </div>
+        <div class="row mt-4">
+            <div class="col-md-4">
+                <p>Don't have an account?</p>
+            </div>
+             <div class="col-md-3">
+                 <a href="{% url 'signup' %}"><p class="a-link">Signup</p></a>
+            </div>
+        </div>
+    </form>
+    </section>
+{% endblock %}
