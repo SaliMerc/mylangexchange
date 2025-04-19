@@ -1,0 +1,89 @@
+body{
+    background-color: #8F5932;
+    min-height: 100vh;
+}
+a{
+    text-decoration: none;
+    color: black;
+}
+.hero{
+    min-height: 100vh;
+}
+nav{
+    padding-top: 2rem;
+}
+
+ul{
+    list-style: none;
+}
+li a{
+    text-decoration: none;
+    /*color: #E3E0C0;*/
+}
+.nav-icon-img{
+    display: none;
+}
+#open-menu, #close-menu{
+   display: none;
+}
+.list{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.sign-in-btn{
+    background-color: #FBEC6C;
+    padding: 0.5rem 1rem 0.5rem 1rem;
+    border-radius: 1rem 1rem 0 1rem;
+    box-shadow: 0.3rem 1.5rem 1rem #453021;
+    color: #000000;
+}
+footer{
+    /*margin-top: 75vh;*/
+    color: #E3E0C0;
+}
+@media (max-width: 768px){
+    /*navbar styling starts*/
+    .nav-icon-img{
+    display: block;
+}
+    .list-div{
+        display: none;
+        transition: 1s ease-in-out;
+    }
+    .list{
+        background-color: #FBEC6C;
+        box-shadow: 0.3rem 1rem 1rem #453021;
+        min-width: 80vw;
+        min-height: 50vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        padding-bottom: 1rem;
+    }
+    .sign-in-btn{
+        background-color: #8F5932;
+        padding: 0.5rem 1rem 0.5rem 1rem;
+        border-radius: 1rem 1rem 0 1rem;
+        box-shadow: 0.3rem 1.5rem 1rem #453021;
+        color: #E3E0C0;
+    }
+    .logo{
+        margin-top: 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .logo-img{
+        max-width: 12rem;
+    }
+    #open-menu, #close-menu{
+        display: block;
+        max-width: 2rem;
+        max-height: 2rem;
+    }
+    #close-menu{
+        display: none;
+    }
+    /*navbar styling ends*/
+}

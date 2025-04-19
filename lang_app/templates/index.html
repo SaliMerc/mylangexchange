@@ -1,0 +1,94 @@
+{% extends 'base-main.html' %}
+{% load static %}
+{% block hero %}
+<section>
+<h1>Learn Swahili and Dholuo with My Language Exchange</h1>
+<p>Discover the joy of learning Swahili and Dholuo in a fun and structured manner. Our flexible schedules and child-friendly classes make language learning a breeze.</p>
+</section>
+{% endblock %}
+{% block content %}
+<section>
+<div class="row justify-content-between">
+    <div class="col-md-7">
+        <h2>Discover the Flexibility of Our Language Classes</h2>
+        <p>At My Language Exchange, we offer language classes for both physical and online learners, with flexible schedules to accommodate your preferences.</p>
+        <div class="row">
+            <div class="col-md-6">
+                <h3>Physical</h3>
+                <p>Join our classes to learn Swahili or Dholuo in a structured, engaging setting.</p>
+            </div>
+            <div class="col-md-6">
+                <h3>Online</h3>
+                <p>Our virtual classes offer quality instruction and interactive experience.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-5">
+        <img src="{% static 'images/about-image.svg' %}" alt="about" class="img-fluid">
+    </div>
+</div>
+</section>
+<section>
+<div class="row justify-content-between">
+    <div class="col-md-7">
+        <img src="{% static 'images/second-image.svg' %}" alt="about" class="img-fluid">
+    </div>
+    <div class="col-md-5">
+        <h3>Engaging</h3>
+        <h2>Fun and Tailored Language Courses for Kids</h2>
+        <p>At My Language Exchange, we offer children-friendly language courses for kids as young as six years old. Our interactive classes make learning Swahili and Dholuo fun and exciting. </p>
+    </div>
+</div>
+</section>
+<section>
+<div>
+    <h2>Unlock the World with Swahili and Dholuo Language Learning</h2>
+    <p>Discover the benefits of learning Swahili and Dholuo with My Language Exchange. Immerse yourself in the rich cultures and expand your personal development.</p>
+</div>
+</section>
+<section style="background-image: url('{% static 'images/minor-background-image.svg' %}'); background-repeat: no-repeat; background-position: right;">
+<div class="row">
+    <div class="col-md-6">
+        <img src="{% static 'images/coconut-image.svg' %}" alt="coconut" class="img-fluid">
+        <h3>Cultural Immersion</h3>
+        <p>Experience the vibrant cultures of East Africa through language, music, and traditions.</p>
+    </div>
+    <div class="col-md-6">
+        <img src="{% static 'images/pen-image.svg' %}" alt="pen" class="img-fluid">
+        <h3>Personal Development</h3>
+        <p>Enhance your cognitive skills and broaden your horizons with Swahili and Dholuo.</p>
+    </div>
+</div>
+</section>
+<section>
+<div>
+    <h2>Contact Us</h2>
+    <p>Get in touch with us for any inquiries or assistance.</p>
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <div class="mail">
+            <a href="" class="row">
+            <img src="{% static 'images/email.svg' %}" alt="email" class="col-md-2 img-fluid">
+            <p class="col-md-4">a@gmail.com</p>
+            </a>
+        </div>
+        <div class="phone">
+            <a href="" class="row">
+            <img src="{% static 'images/phone.svg' %}" alt="call" class="col-md-2 img-fluid">
+            <p class="col-md-4">07123333333</p>
+            </a>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <h3>Social Media</h3>
+        <div>
+            <img src="{% static 'images/facebook.svg' %}" alt="facebook">
+             <img src="{% static 'images/tiktok.svg' %}" alt="tiktok">
+             <img src="{% static 'images/instagram.svg' %}" alt="instagram">
+             <img src="{% static 'images/twitter.svg' %}" alt="twitter">
+        </div>
+    </div>
+</div>
+</section>
+{% endblock %}
