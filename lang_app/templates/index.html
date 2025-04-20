@@ -1,14 +1,14 @@
 {% extends 'base-main.html' %}
 {% load static %}
 {% block hero %}
-<section id="hero-content" class="ms-4">
+<section id="hero-content" class="ms-4" data-aos="slide-right" data-aos-duration="1000" data-aos-delay="100" data-aos-easing="ease-in-out">
 <h1>Learn Swahili and <span class="white-heading">Dholuo with </span>My Language <span class="white-heading">Exchange</span></h1>
 <p>Discover the joy of learning Swahili and Dholuo in a fun and structured manner. Our flexible schedules and child-friendly classes make language learning a breeze.</p>
 <a href="{% url 'signup' %}" class="sign-in-btn-new">Get Started</a>
 </section>
 {% endblock %}
 {% block content %}
-<section>
+<section data-aos="slide-up" data-aos-duration="1000" data-aos-delay="100" data-aos-easing="ease-in-out">
 <div class="row justify-content-between mt-5 align-items-center ms-4 me-4" >
     <div class="col-md-7" id="about-content">
         <h2>Discover the Flexibility of Our Language Classes</h2>
@@ -24,24 +24,24 @@
             </div>
         </div>
     </div>
-    <div class="col-md-5">
+    <div class="col-md-5"  data-aos="flip-up">
         <img src="{% static 'images/about-image.png' %}" alt="about" class="img-fluid">
     </div>
 </div>
 </section>
 <section id="services">
 <div class="row justify-content-between mt-5 align-items-center ms-4 me-4">
-    <div class="col-md-7">
+    <div class="col-md-7" data-aos="flip-up">
         <img src="{% static 'images/second-image.png' %}" alt="about" class="img-fluid">
     </div>
-    <div class="col-md-5">
+    <div class="col-md-5" data-aos="slide-left" data-aos-duration="1000" data-aos-delay="100" data-aos-easing="ease-in-out">
         <h3>Engaging</h3>
         <h2 class="mt-3 mb-3">Fun and Tailored Language Courses for Kids</h2>
         <p>At My Language Exchange, we offer children-friendly language courses for kids as young as six years old. Our interactive classes make learning Swahili and Dholuo fun and exciting. </p>
     </div>
 </div>
 </section>
-<section>
+<section data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="100" data-aos-easing="ease-in-out">
 <div class="ms-4 me-4 w-75 mt-5">
     <h2>Unlock the World with Swahili and Dholuo Language Learning</h2>
     <p>Discover the benefits of learning Swahili and Dholuo with My Language Exchange. Immerse yourself in the rich cultures and expand your personal development.</p>
@@ -49,12 +49,12 @@
 </section>
 <section style="background-image: url('{% static 'images/second-background.png' %}'); background-repeat: no-repeat; background-position: right;">
 <div class="row me-4 ms-4 mt-5 service">
-    <div class="col-md-6">
+    <div class="col-md-6" data-aos="flip-right" data-aos-delay="100" data-aos-duration="1000" data-aos-easing="ease-in-out">
         <img src="{% static 'images/coconut-image.svg' %}" alt="coconut" class="img-fluid">
         <h3>Cultural Immersion</h3>
         <p>Experience the vibrant cultures of East Africa through language, music, and traditions.</p>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-6" data-aos="flip-left" data-aos-delay="100" data-aos-duration="1000" data-aos-easing="ease-in-out">
         <img src="{% static 'images/pen-image.svg' %}" alt="pen" class="img-fluid">
         <h3>Personal Development</h3>
         <p>Enhance your cognitive skills and broaden your horizons with Swahili and Dholuo.</p>
@@ -99,7 +99,7 @@
     </div>
     <div class="col-md-1 mt-5">
         <a href="{% url 'index' %}" class="d-flex flex-column align-items-center justify-content-right z-index-1">
-            <img src="{% static 'images/up-arrow.png' %}" alt="back to top" class="img-fluid">
+            <img src="{% static 'images/up-arrow.png' %}" alt="back to top" class="img-fluid back-to-top" style="z-index: 3; box-shadow: 0 0 1rem 0 rgba(0,0,0,0.75); border-radius: 3rem 3rem 0 3rem; cursor: pointer; min-height: 5rem; min-width: 5rem; padding: 1rem">
             <p>Back</p>
         </a>
     </div>

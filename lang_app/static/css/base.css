@@ -26,6 +26,7 @@ p{
 }
 .hero{
     min-height: 100vh;
+    position: relative;
 }
 nav{
     padding-top: 2rem;
@@ -33,6 +34,11 @@ nav{
     font-weight: 600;
     color: #E3E0C0;
     align-items: center;
+}
+.list-div{
+     position:fixed;
+    z-index: 1;
+    top: 0;
 }
 ul{
     list-style: none;
@@ -169,6 +175,17 @@ form label{
 .post-date{
     font-size: 0.8rem;
 }
+.back-to-top{
+   animation: rotate360 2s ease-in-out forwards;
+}
+ @keyframes rotate360 {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
 @media (max-width: 900px){
     /*navbar styling starts*/
     .nav-icon-img{
@@ -180,7 +197,7 @@ form label{
     }
     .list{
         background-color: #FBEC6C;
-        box-shadow: 0.3rem 1rem 1rem #453021;
+        box-shadow: 0.3rem 1rem 1rem #000000;
         border-radius: 1rem;
         min-width: 80vw;
         min-height: 50vh;
