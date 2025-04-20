@@ -1,0 +1,21 @@
+{% extends 'base-main.html' %}
+{% load static %}
+{% block hero-style %} class="other" style="background-color: #8F5932;" {% endblock %}
+{% block content %}
+    <section class="align-items-left mt-4 post-section">
+      <h2> <span class="a-link">The Language</span> Exchange Journal</h2>
+      <div class="row mt-5">
+          {% for _ in '12345678910111213' %}
+          <div class="col-md-3 blog-card justify-content-between mb-5">
+              <img src="{% static 'images/post-item.png' %}" alt="post-image" class="img-fluid post-image">
+              <h2>Post title</h2>
+              <p class="a-link post-date">By MLE Team on 10/5/2025</p>
+              <p>The post content goes here The post content goes here The post content goes here The post content goes here</p>
+              <a href="{% url 'blog-single-content' %}" class="sign-in-btn-new">Read More...</a>
+          </div>
+          {% empty %}
+              <p>No posts have been published yet</p>
+          {% endfor %}
+      </div>
+    </section>
+{% endblock %}

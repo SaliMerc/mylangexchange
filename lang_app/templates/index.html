@@ -25,14 +25,14 @@
         </div>
     </div>
     <div class="col-md-5">
-        <img src="{% static 'images/about-image.svg' %}" alt="about" class="img-fluid">
+        <img src="{% static 'images/about-image.png' %}" alt="about" class="img-fluid">
     </div>
 </div>
 </section>
 <section id="services">
 <div class="row justify-content-between mt-5 align-items-center ms-4 me-4">
     <div class="col-md-7">
-        <img src="{% static 'images/second-image.svg' %}" alt="about" class="img-fluid">
+        <img src="{% static 'images/second-image.png' %}" alt="about" class="img-fluid">
     </div>
     <div class="col-md-5">
         <h3>Engaging</h3>
@@ -47,7 +47,7 @@
     <p>Discover the benefits of learning Swahili and Dholuo with My Language Exchange. Immerse yourself in the rich cultures and expand your personal development.</p>
 </div>
 </section>
-<section style="background-image: url('{% static 'images/minor-background-image.svg' %}'); background-repeat: no-repeat; background-position: right;">
+<section style="background-image: url('{% static 'images/second-background.png' %}'); background-repeat: no-repeat; background-position: right;">
 <div class="row me-4 ms-4 mt-5 service">
     <div class="col-md-6">
         <img src="{% static 'images/coconut-image.svg' %}" alt="coconut" class="img-fluid">
@@ -81,7 +81,7 @@
             </a>
         </div>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-5">
         <h3>Social Media</h3>
         <div>
             <a href="">
@@ -96,6 +96,12 @@
              <img src="{% static 'images/twitter.svg' %}" alt="twitter" class="img-fluid">
             </a>
         </div>
+    </div>
+    <div class="col-md-1 mt-5">
+        <a href="{% url 'index' %}" class="d-flex flex-column align-items-center justify-content-right z-index-1">
+            <img src="{% static 'images/up-arrow.png' %}" alt="back to top" class="img-fluid">
+            <p>Back</p>
+        </a>
     </div>
 </div>
 </section>

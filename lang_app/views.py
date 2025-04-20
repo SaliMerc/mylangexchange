@@ -17,3 +17,9 @@ def forgotten_pass(request):
 
 def change_pass(request):
     return render(request, 'change-password.html')
+
+def blog_list(request):
+    return render(request, 'blog.html')
+
+def blog_single_content(request):
+    return render(request, 'blog-single-content.html')
