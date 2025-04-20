@@ -35,7 +35,7 @@ nav{
     color: #E3E0C0;
     align-items: center;
 }
-.list-div{
+.my-div{
      position:fixed;
     z-index: 1;
     top: 0;
@@ -191,7 +191,7 @@ form label{
     .nav-icon-img{
     display: block;
 }
-    .list-div{
+    .my-div{
         display: none;
         transition: 1s ease-in-out;
     }
