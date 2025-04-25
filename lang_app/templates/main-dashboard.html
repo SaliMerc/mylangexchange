@@ -1,0 +1,8 @@
+{% extends 'dashboard-base.html' %}
+{% load static %}
+ {% block welcome %}
+ <p class="a-link">Welcome back {{ user.first_name| capfirst}} {{ user.last_name|capfirst }}!</p>
+{% endblock %}
+{% block content %}
+<p>This is the dashboard</p>
+{% endblock %}

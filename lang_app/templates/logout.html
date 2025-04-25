@@ -1,0 +1,15 @@
+{% extends 'dashboard-base.html' %}
+{% load static %}
+{% block content %}
+<div class="logout-div sign-in-btn">
+    <p class="text-center">Are you sure you want to logout?</p>
+    <div class="confirmation-btns text-center">
+        <div class="col-md-6">
+            <a href="{% url 'index' %}" class="sign-in-btn-new mt-5 btn pe-5 ps-5">YES</a>
+        </div>
+        <div class="col-md-6">
+             <a href="{% url 'dashboard' %}" class="sign-in-btn-new mt-5 btn pe-5 ps-5 cancel-btn">NO</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

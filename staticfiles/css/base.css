@@ -138,6 +138,7 @@ form label{
     border:none !important;
     background-color: #FBEC6C;
     box-shadow: none;
+    color: #000000;
 
 }
 .a-link{
@@ -169,6 +170,59 @@ form label{
 }
 .post-date{
     font-size: 0.8rem;
+}
+/*dashboard*/
+.dashboard{
+    background-color: #FBEC6C;
+    min-height: 100vh;
+}
+.main-content{
+    min-height: 100vh;
+}
+.page-heading{
+    display: flex;
+    flex-direction: row !important;
+    justify-content: space-between !important;
+}
+#collapse{
+    cursor: pointer;
+}
+.dashboard-nav{
+    display: flex;
+    flex-direction: row;
+    width: 20rem;
+}
+.all-icons{
+    display: flex;
+    flex-direction: column;
+    gap: 4.5rem;
+    align-items: center;
+}
+.all-icons ul li{
+    justify-content: left;
+    padding-bottom: 3rem;
+    height: 4rem;
+    color: #8F5932;
+}
+/*logout page*/
+.logout-div{
+    margin-top: 15%;
+    background-color: #8F5932;
+    min-height: 50vh;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-self: center;
+}
+.confirmation-btns{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.cancel-btn{
+    background-color: #E11212;
+    color: #E3E0C0;
 }
 @media (max-width: 900px){
     /*navbar styling starts*/
@@ -225,4 +279,17 @@ form label{
     #about-content{
         max-width: 100%;
 }
+    .dashboard{
+        display: none;
+        position: absolute;
+        z-index: 1;
+        width: 60%;
+        transition: opacity 3s ease-in-out;
+    }
+        .all-icons{
+        display: flex;
+        flex-direction: column;
+        gap:7.5rem;
+        align-items: center;
+    }
 }

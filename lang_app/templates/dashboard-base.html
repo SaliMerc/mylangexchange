@@ -1,0 +1,98 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link rel="preload" href="https://unpkg.com/aos@2.3.1/dist/aos.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <title>My Language Exchange</title>
+    <style>
+        @font-face {
+          font-family: 'Ghakity';
+          src: url("{% static 'fonts/Ghakity.otf' %}");
+          font-weight: normal;
+          font-style: normal;
+}
+        body{
+            font-family: 'Ghakity';
+        }
+    </style>
+</head>
+<body>
+<div class="container-fluid">
+<div class="row main-page">
+<div class="col-md-3 dashboard" id="dashboard-view">
+<header>
+ <nav>
+     <div class="align-items-center justify-content-start dashboard-nav">
+         <div class="col-md-1 all-icons">
+             <ul>
+                 <li><a href=""><img src="{% static 'images/c-logo.svg' %}" alt="Logo"></a></li>
+             </ul>
+             <ul>
+              <li><a href=""><img src="{% static 'images/home.svg' %}" alt="Home" class="img-fluid"></a></li>
+               <li><a href=""><img src="{% static 'images/courses.svg' %}" alt="Courses"></a></li>
+               <li><a href=""><img src="{% static 'images/partners.svg' %}" alt="Partners"></a></li>
+               <li><a href=""><img src="{% static 'images/chats.svg' %}" alt="Chats"></a></li>
+               <li><a href=""><img src="{% static 'images/posts.svg' %}" alt="Posts"></a></li>
+               <li><a href=""><img src="{% static 'images/blog.svg' %}" alt="Blog"></a></li>
+             </ul>
+             <ul>
+               <li><a href=""><img src="{% static 'images/profile.svg' %}" alt="Profile"></a></li>
+               <li><a href=""><img src="{% static 'images/payments.svg' %}" alt="Payments"></a></li>
+               <li><a href=""><img src="{% static 'images/settings.svg' %}" alt="Settings"></a></li>
+               <li><a href="{% url 'logout' %}"><img src="{% static 'images/logout.svg' %}" alt="Logout"></a></li>
+             </ul>
+         </div>
+         <div class="col-md-6 all-icon-des all-icons" id="icon-description">
+             <ul>
+                 <li><a href="">My Language App</a></li>
+             </ul>
+             <ul>
+               <li><a href="">Home</a></li>
+               <li><a href="">Courses</a></li>
+               <li><a href="">Find partners</a></li>
+               <li><a href="">Chats</a></li>
+               <li><a href="">Posts</a></li>
+               <li><a href="">Blog</a></li>
+             </ul>
+             <ul class="align-items-end">
+               <li><a href="">Profile</a></li>
+               <li><a href="">Payments</a></li>
+               <li><a href="">Settings</a></li>
+               <li><a href="{% url 'logout' %}">Logout</a></li>
+             </ul>
+         </div>
+     </div>
+ </nav>
+</header>
+</div>
+<div class="col-md-9 main-content" id="main-content">
+<div class="d-flex flex-column mt-4">
+    <div class="justify-content-between page-heading mb-4 align-center">
+        <div class="col-md-6">
+            <img src="{% static 'images/collapse-menu.svg' %}" alt="collapse-menu" id="collapse">
+        </div>
+        <div class="col-md-6">
+            {% block welcome %}
+{#                for the main dashboard#}
+            {% endblock %}
+        </div>
+    </div>
+{% block content %}
+{#    other content go here#}
+{% endblock %}
+</div>
+</div>
+</div>
+</div>
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
+<script src="{% static 'js/base.js' %}"></script>
+<script src="{% static 'js/dashboard.js' %}"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+</body>
+</html>

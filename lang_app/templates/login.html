@@ -3,13 +3,20 @@
 {% block hero-style %} class="other" style="background-color: #8F5932;" {% endblock %}
 {% block content %}
     <section class=" d-flex flex-column align-items-center" data-aos="slide-right">
-    <form action="" method="post" enctype="multipart/form-data">
+                {% if messages %}
+                        {% for message in messages %}
+                            <p style="color: {% if message.tags == 'error' %}#d14d4d{% else %}#435a42{% endif %}; background-color: #FBEC6C; border-radius: 1rem" class="mx-5 p-3" id="alert-items">
+                                {{ message }}
+                            </p>
+                        {% endfor %}
+                {% endif %}
+    <form action="{% url 'login' %}" method="post" enctype="multipart/form-data">
     {% csrf_token %}
         <h2> <span class="a-link">Login</span> Here</h2>
         <label for="email">Email</label>
-        <input type="email" id="email" class="form-control sign-in-btn-new" placeholder="Email Address" name="email">
+        <input type="email" id="email" class="form-control sign-in-btn-new" placeholder="Email Address" name="email" required>
         <label for="password">Password</label>
-        <input type="password" id="password" class="form-control sign-in-btn-new" placeholder="Password" name="password">
+        <input type="password" id="password" class="form-control sign-in-btn-new" placeholder="Password" name="password" required>
         <button type="submit" class="sign-in-btn-new mt-5 btn pe-5 ps-5">Login</button>
           <div class="mt-5">
             <a href="{% url 'forgotten-pass' %}"><p>Forgotten Password?</p></a>
