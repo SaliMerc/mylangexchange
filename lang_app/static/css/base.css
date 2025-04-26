@@ -75,6 +75,22 @@ li a{
     background-color: #8F5932;
 }
 
+.course-items{
+    background-color: #8F5932;
+    border-radius: 1rem 1rem 0 1rem;
+    box-shadow: 0.3rem 1.5rem 1rem #453021;
+    padding: 0.5rem 1rem 2rem 1rem;
+    min-height: 20rem;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+}
+.course-image{
+    height: 5rem;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 2rem 2rem 0 2rem;
+}
 
 footer{
     /*margin-top: 75vh;*/
@@ -174,10 +190,17 @@ form label{
 /*dashboard*/
 .dashboard{
     background-color: #FBEC6C;
-    min-height: 100vh;
+    min-height: 120vh;
+    position: fixed;
+
+}
+.main-page{
+    /*position: relative;*/
 }
 .main-content{
     min-height: 100vh;
+    margin-left: 23rem;
+    width: 75%;
 }
 .page-heading{
     display: flex;
@@ -195,14 +218,17 @@ form label{
 .all-icons{
     display: flex;
     flex-direction: column;
-    gap: 4.5rem;
+    gap: 3rem;
     align-items: center;
 }
 .all-icons ul li{
     justify-content: left;
     padding-bottom: 3rem;
-    height: 4rem;
+    height: 3rem;
     color: #8F5932;
+}
+.dashboard-forms{
+    width:85%;
 }
 /*logout page*/
 .logout-div{
@@ -288,15 +314,21 @@ form label{
 }
     .dashboard{
         display: none;
-        position: absolute;
+        position: fixed;
         z-index: 1;
-        width: 60%;
+        width: 70%;
+        min-height: 100vh;
         transition: opacity 3s ease-in-out;
     }
         .all-icons{
         display: flex;
         flex-direction: column;
-        gap:7.5rem;
+        gap:7rem;
         align-items: center;
     }
+    .main-content{
+        min-height: 100vh;
+        margin-left: 0;
+        width: 100%;
+}
 }

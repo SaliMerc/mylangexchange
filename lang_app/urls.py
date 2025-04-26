@@ -14,6 +14,9 @@ urlpatterns = [
     path('login/blogs/', views.blog_logged_in, name='logged-blog'),
     path('login/blogs/blog-content/<int:id>/', views.blog_single_post_logged_in, name='blog-single-post-logged-in'),
 
+    path('all-courses/', views.all_courses, name='all-courses'),
+    path('courses/enroll', views.enroll_course, name='enroll-course'),
+
     path('dashboard/', views.main_dashboard, name='dashboard'),
     path('logout/', views.logout, name='logout'),
 ]

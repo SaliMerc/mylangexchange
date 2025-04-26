@@ -31,21 +31,21 @@
      <div class="align-items-center justify-content-start dashboard-nav">
          <div class="col-md-1 all-icons">
              <ul>
-                 <li><a href="{% url 'dashboard' %}"><img src="{% static 'images/c-logo.svg' %}" alt="Logo"></a></li>
+                 <li><a href="{% url 'dashboard' %}"><img src="{% static 'images/c-logo.svg' %}" alt="Logo" title="Dashboard"></a></li>
              </ul>
              <ul>
-              <li><a href="{% url 'dashboard' %}"><img src="{% static 'images/home.svg' %}" alt="Home" class="img-fluid"></a></li>
-               <li><a href=""><img src="{% static 'images/courses.svg' %}" alt="Courses"></a></li>
-               <li><a href=""><img src="{% static 'images/partners.svg' %}" alt="Partners"></a></li>
-               <li><a href=""><img src="{% static 'images/chats.svg' %}" alt="Chats"></a></li>
-               <li><a href=""><img src="{% static 'images/posts.svg' %}" alt="Posts"></a></li>
-               <li><a href="{% url 'logged-blog' %}"><img src="{% static 'images/blog.svg' %}" alt="Blog"></a></li>
+              <li><a href="{% url 'dashboard' %}"><img src="{% static 'images/home.svg' %}" alt="Home" class="img-fluid" title="Home"></a></li>
+               <li><a href="{% url 'all-courses' %}"><img src="{% static 'images/courses.svg' %}" alt="Courses" title="Courses"></a></li>
+               <li><a href=""><img src="{% static 'images/partners.svg' %}" alt="Partners" title="Find Partners"></a></li>
+               <li><a href=""><img src="{% static 'images/chats.svg' %}" alt="Chats" title="Chats"></a></li>
+               <li><a href=""><img src="{% static 'images/posts.svg' %}" alt="Posts" title="Posts"></a></li>
+               <li><a href="{% url 'logged-blog' %}"><img src="{% static 'images/blog.svg' %}" alt="Blog" title="Blog"></a></li>
              </ul>
              <ul>
-               <li><a href=""><img src="{% static 'images/profile.svg' %}" alt="Profile"></a></li>
-               <li><a href=""><img src="{% static 'images/payments.svg' %}" alt="Payments"></a></li>
-               <li><a href=""><img src="{% static 'images/settings.svg' %}" alt="Settings"></a></li>
-               <li><a href="{% url 'logout' %}"><img src="{% static 'images/logout.svg' %}" alt="Logout"></a></li>
+               <li><a href=""><img src="{% static 'images/profile.svg' %}" alt="Profile" title="Profile"></a></li>
+               <li><a href=""><img src="{% static 'images/payments.svg' %}" alt="Payments" title="Payments"></a></li>
+               <li><a href=""><img src="{% static 'images/settings.svg' %}" alt="Settings" title="Settings"></a></li>
+               <li><a href="{% url 'logout' %}"><img src="{% static 'images/logout.svg' %}" alt="Logout" title="Logout"></a></li>
              </ul>
          </div>
          <div class="col-md-6 all-icon-des all-icons" id="icon-description">
@@ -54,7 +54,7 @@
              </ul>
              <ul>
                <li><a href="{% url 'dashboard' %}">Home</a></li>
-               <li><a href="">Courses</a></li>
+               <li><a href="{% url 'all-courses' %}">Courses</a></li>
                <li><a href="">Find partners</a></li>
                <li><a href="">Chats</a></li>
                <li><a href="">Posts</a></li>

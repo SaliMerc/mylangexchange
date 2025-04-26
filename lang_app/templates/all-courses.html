@@ -1,0 +1,26 @@
+{% extends 'dashboard-base.html' %}
+{% load static %}
+{% block content %}
+    <h2> <span class="a-link">All Courses</span></h2>
+    {% for language, courses in courses_by_language.items %}
+    <h2 class="mt-4">{{ language }}</h2>
+    <div class="row mt-1 blogs">
+    {% for course in courses %}
+    <div class="col-md-4 justify-content-between mb-5">
+    <div class="course-items">
+        {% if course.course_level == 'beginner' %}
+             <img src="{% static 'images/beginner-level.jpg' %}" alt="course-image" class="img-fluid course-image">
+        {% elif course.course_level == 'intermediate' %}
+             <img src="{% static 'images/intermediate-level.jpg' %}" alt="course-image" class="img-fluid course-image">
+        {% elif course.course_level == 'advanced' %}
+             <img src="{% static 'images/advanced-level.jpg' %}" alt="course-image" class="img-fluid course-image">
+        {% endif %}
+          <h2 class="mt-4">{{ course.course_name|capfirst }}</h2>
+          <p class="a-link">Level: {{ course.course_level|capfirst }}</p>
+          <a href="{% url 'enroll-course' %}" class="sign-in-btn-new mt-5">Enroll</a>
+    </div>
+        </div>
+    {% endfor %}
+    </div>
+    {% endfor %}
+{% endblock %}

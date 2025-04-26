@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import MyUser, Blog
+from .models import MyUser, Blog, Course
 
 @admin.register(MyUser)
 class MyUserModelAdmin(admin.ModelAdmin):
@@ -8,3 +8,7 @@ class MyUserModelAdmin(admin.ModelAdmin):
 @admin.register(Blog)
 class BlogModelAdmin(admin.ModelAdmin):
     list_display = ("blog_author", "blog_title", "blog_content", "blog_image")
+
+@admin.register(Course)
+class CourseModelAdmin(admin.ModelAdmin):
+    list_display = ("course_name", "course_level", "instructor_name", "difficulty")

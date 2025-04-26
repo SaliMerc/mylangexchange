@@ -2,7 +2,7 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login as auth_login
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
-from lang_app.models import MyUser, Blog, Post
+from lang_app.models import MyUser, Blog, Post, Course
 from django.contrib.auth.hashers import check_password
 import requests
 from user_agents import parse as parse_ua
@@ -154,3 +154,21 @@ def blog_logged_in(request):
 def blog_single_post_logged_in(request, id):
     blog=get_object_or_404(Blog, id=id)
     return render(request, 'blog-single-content-logged-in.html', {'blog':blog})
+
+@login_required
+def all_courses(request):
+    courses=Course.objects.all()
+
+    courses_by_language = {}
+    for course in courses:
+        language = course.course_name
+        if language not in courses_by_language:
+            courses_by_language[language] = []
+        courses_by_language[language].append(course)
+
+    context={'courses':courses,"courses_by_language":courses_by_language}
+    return render(request, 'all-courses.html', context)
+
+@login_required
+def enroll_course(request):
+    return render(request, 'enroll-course.html')

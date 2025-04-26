@@ -75,13 +75,27 @@ class Post(models.Model):
 
 #To store the all the courses available
 class Course(models.Model):
+    DIFFICULTY_CHOICES = [
+        (1, 'Beginner'),
+        (2, 'Intermediate'),
+        (3, 'Advanced'),
+    ]
+    LEVEL_CHOICES = [
+        ('beginner', 'Beginner'),
+        ('intermediate', 'Intermediate'),
+        ('advanced', 'Advanced'),
+    ]
     course_name=models.CharField(max_length=255)
-    course_level=models.CharField(max_length=255)
-    course_thumbnail=models.ImageField(upload_to='course-thumbnails', blank=True, null=True)
+    course_level=models.CharField(choices=LEVEL_CHOICES, max_length=255, default='beginner')
+    # course_thumbnail=models.ImageField(upload_to='course-thumbnails', blank=True, null=True)
     instructor_name=models.CharField(max_length=255)
+    difficulty = models.IntegerField(choices=DIFFICULTY_CHOICES, default=1)
 
     def __str__(self):
         return self.course_name
+
+    class Meta:
+        ordering = ['course_name','difficulty']
 
 class CourseModule(models.Model):
     course=models.ForeignKey(Course,on_delete=models.CASCADE, related_name='course_modules')
