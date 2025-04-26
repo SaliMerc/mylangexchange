@@ -56,7 +56,7 @@ class Blog(models.Model):
     blog_image=models.ImageField(upload_to='blog-images', blank=True, null=True)
     blog_title = models.CharField(max_length=255)
     blog_content = models.TextField()
-    blog_author = models.ForeignKey(MyUser, on_delete=models.CASCADE)
+    blog_author = models.CharField(max_length=255)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

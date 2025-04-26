@@ -9,7 +9,10 @@ urlpatterns = [
     path('change-password/', views.change_pass, name='change-pass'),
 
     path('blogs/', views.blog_list, name='blog-list'),
-    path('blogs/blog-content/', views.blog_single_content, name='blog-single-content'),
+    path('blogs/blog-content/<int:id>', views.blog_single_content, name='blog-single-content'),
+
+    path('login/blogs/', views.blog_logged_in, name='logged-blog'),
+    path('login/blogs/blog-content/<int:id>/', views.blog_single_post_logged_in, name='blog-single-post-logged-in'),
 
     path('dashboard/', views.main_dashboard, name='dashboard'),
     path('logout/', views.logout, name='logout'),

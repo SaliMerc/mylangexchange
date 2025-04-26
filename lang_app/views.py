@@ -1,8 +1,8 @@
 from django.contrib import messages
 from django.contrib.auth import authenticate, login as auth_login
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, redirect
-from lang_app.models import MyUser
+from django.shortcuts import render, redirect, get_object_or_404
+from lang_app.models import MyUser, Blog, Post
 from django.contrib.auth.hashers import check_password
 import requests
 from user_agents import parse as parse_ua
@@ -125,10 +125,12 @@ def change_pass(request):
     return render(request, 'change-password.html')
 
 def blog_list(request):
-    return render(request, 'blog.html')
+    blogs=Blog.objects.all().order_by('-created_at')
+    return render(request, 'blog.html',{'blogs':blogs})
 
-def blog_single_content(request):
-    return render(request, 'blog-single-content.html')
+def blog_single_content(request,id):
+    blog = get_object_or_404(Blog, id=id)
+    return render(request, 'blog-single-content.html', {"blog": blog})
 
 def dashboard_base(request):
     return render(request, 'dashboard-base.html')
@@ -142,3 +144,13 @@ def main_dashboard(request):
 @login_required
 def logout(request):
     return render(request, 'logout.html')
+
+@login_required
+def blog_logged_in(request):
+    blogs=Blog.objects.all().order_by('-created_at')
+    return render(request, 'blog-logged-in.html', {'blogs':blogs})
+
+@login_required
+def blog_single_post_logged_in(request, id):
+    blog=get_object_or_404(Blog, id=id)
+    return render(request, 'blog-single-content-logged-in.html', {'blog':blog})

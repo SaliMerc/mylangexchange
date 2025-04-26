@@ -1,0 +1,15 @@
+{% extends 'dashboard-base.html' %}
+{% load static %}
+{% block content %}
+    <div class="justify-content-center blog-content-page">
+      <img src="{{ blog.blog_image.url }}" alt="post-image" class="img-fluid post-image-full">
+      <h2 class="mt-5">{{ blog.blog_title }}</h2>
+      <p class="a-link post-date">By {{ blog.blog_author }} on {{ blog.created_at|date:'d/m/y'}}</p>
+      <p>
+          {% autoescape off %}
+              {{ blog.blog_content|linebreaks }}
+          {% endautoescape %}
+      </p>
+{#      <a href="" class="sign-in-btn-new mt-5 mb-5" style="background-color: #8F5932; color: #E3E0C0"></a>#}
+    </div>
+{% endblock %}
