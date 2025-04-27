@@ -4,6 +4,16 @@ from django.db.models import CharField
 from django.contrib.auth.models import BaseUserManager
 # from moviepy.editor import VideoFileClip, AudioFileClip
 
+DIFFICULTY_CHOICES = [
+    (1, 'Beginner'),
+    (2, 'Intermediate'),
+    (3, 'Advanced'),
+]
+LEVEL_CHOICES = [
+    ('beginner', 'Beginner'),
+    ('intermediate', 'Intermediate'),
+    ('advanced', 'Advanced'),
+]
 class CustomUserManager(BaseUserManager):
     def create_user(self, email, username, password=None, **extra_fields):
         if not email:
@@ -49,7 +59,7 @@ class MyUser(AbstractUser):
     REQUIRED_FIELDS = []
 
     def __str__(self):
-        return self.first_name
+        return self.email
 
 #To store the blog post data: each blog can only have one image
 class Blog(models.Model):
@@ -75,16 +85,6 @@ class Post(models.Model):
 
 #To store the all the courses available
 class Course(models.Model):
-    DIFFICULTY_CHOICES = [
-        (1, 'Beginner'),
-        (2, 'Intermediate'),
-        (3, 'Advanced'),
-    ]
-    LEVEL_CHOICES = [
-        ('beginner', 'Beginner'),
-        ('intermediate', 'Intermediate'),
-        ('advanced', 'Advanced'),
-    ]
     course_name=models.CharField(max_length=255)
     course_level=models.CharField(choices=LEVEL_CHOICES, max_length=255, default='beginner')
     # course_thumbnail=models.ImageField(upload_to='course-thumbnails', blank=True, null=True)
@@ -97,15 +97,34 @@ class Course(models.Model):
     class Meta:
         ordering = ['course_name','difficulty']
 
+#To store the enrolment details for the courses
+class EnrolledCourses(models.Model):
+    course_name=models.ForeignKey(Course,on_delete=models.CASCADE, related_name='courses')
+    course_level =models.CharField(choices=LEVEL_CHOICES, max_length=255, default='beginner')
+    student=models.ForeignKey(MyUser,on_delete=models.CASCADE, related_name='students')
+    enrolment_date=models.DateTimeField(auto_now_add=True)
+    progress=models.FloatField(default=0.0, blank=True, null=True)
+    is_completed=models.BooleanField(default=False)
+    completion_date=models.DateTimeField(blank=True, null=True)
+
+    class Meta:
+        unique_together = ('student', 'course_name', 'course_level')
+
+    def __str__(self):
+        return self.course_name.course_name
+
+
 class CourseModule(models.Model):
-    course=models.ForeignKey(Course,on_delete=models.CASCADE, related_name='course_modules')
-    module_title=models.CharField(max_length=255)
-    module_description=models.TextField()
+    course = models.ForeignKey(EnrolledCourses, on_delete=models.CASCADE, related_name='course_modules')
+    module_title = models.CharField(max_length=255)
+    module_description = models.TextField()
+    module_order = models.IntegerField(default=1)
 
     def __str__(self):
         return self.module_title
 
-#To do: add a quiz table that stores questions that will be shown at the end of each module
+
+# To do: add a quiz table that stores questions that will be shown at the end of each module
 
 class CourseLesson(models.Model):
     LESSON_CHOICES = [
@@ -113,32 +132,17 @@ class CourseLesson(models.Model):
         ('audio', 'Audio'),
         ('read', 'Read'),
     ]
+    module_name = models.ForeignKey(CourseModule, on_delete=models.CASCADE, related_name='module_lessons')
+    lesson_title = models.CharField(max_length=255)
+    lesson_description = models.TextField()
+    lesson_number = models.IntegerField()
+    lesson_type = models.CharField(max_length=255, choices=LESSON_CHOICES, default='read')
+    lesson_file = models.FileField(upload_to='course-lessons', blank=True, null=True)
+    lesson_transcript = models.TextField(blank=True, null=True)
+    lesson_content = models.TextField(blank=True, null=True)
+    lesson_duration = models.FloatField(blank=True, null=True, help_text="Duration of the lesson in seconds")
 
-    module_name=models.ForeignKey(CourseModule,on_delete=models.CASCADE, related_name='module_lessons')
-    lesson_title=models.CharField(max_length=255)
-    lesson_description=models.TextField()
-    lesson_number=models.IntegerField()
-    lesson_type=models.CharField(max_length=255, choices=LESSON_CHOICES, default='read')
-    lesson_file=models.FileField(upload_to='course-lessons', blank=True, null=True)
-    lesson_transcript=models.TextField(blank=True, null=True)
-    lesson_content=models.TextField(blank=True, null=True)
-    lesson_duration=models.FloatField(blank=True, null=True, help_text="Duration of the lesson in seconds")
-    
     # use moviepy to extract the video and audio lengths nly if the content type is either  video or audio but for the read content you add the estimated duration it would take the user to complete the lesson
 
     def __str__(self):
         return self.lesson_title
-
-#To store the enrolment details for the courses
-class EnrolledCourses(models.Model):
-    course=models.ForeignKey(Course,on_delete=models.CASCADE, related_name='courses')
-    student=models.ForeignKey(MyUser,on_delete=models.CASCADE, related_name='students')
-    enrolment_date=models.DateTimeField(auto_now_add=True)
-    progress=models.FloatField(default=0.0)
-    completion_date=models.DateTimeField(blank=True, null=True)
-
-    class Meta:
-        unique_together = ('student', 'course')
-
-    def __str__(self):
-        return self.course.course_name

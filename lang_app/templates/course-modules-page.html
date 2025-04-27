@@ -1,0 +1,16 @@
+{% extends 'dashboard-base.html' %}
+{% load static %}
+{% block content %}
+{#for the specific modules of the courses#}
+      <h2><span class="a-link">{{ course.course_name }}-</span>{{ course.course_level|capfirst }}</h2>
+    {% for module in modules %}
+        <a href="">
+            <div class="course-items mb-5 module-items">
+                  <h3 class="a-link">{{ module.module_title }}</h3>
+                  <p class="">{{ module.module_description }}</p>
+            </div>
+        </a>
+        {% empty %}
+        <p>Course content have not been added yet</p>
+    {% endfor %}
+{% endblock %}

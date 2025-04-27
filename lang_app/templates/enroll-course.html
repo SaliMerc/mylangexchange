@@ -8,15 +8,15 @@
                 </p>
             {% endfor %}
     {% endif %}
-    <form action="" method="post" enctype="multipart/form-data" class="dashboard-forms">
+    <form action="{% url 'enroll-course' course.id %}" method="post" enctype="multipart/form-data" class="dashboard-forms">
     {% csrf_token %}
         <h2> <span class="a-link">Confirm</span> Enrollment</h2>
         <label for="lang">Language</label>
-        <input type="text" id="lang" class="form-control sign-in-btn-new" placeholder="Language" name="language" readonly>
+        <input type="text" id="lang" class="form-control sign-in-btn-new" placeholder="Language" name="language" value="{{ course.course_name }}" readonly>
         <label for="lang-l">Language Level</label>
-        <input type="text" id="lang-l" class="form-control sign-in-btn-new" placeholder="Language level" name="language-level" readonly>
+        <input type="text" id="lang-l" class="form-control sign-in-btn-new" placeholder="Language level" name="language-level" value="{{ course.course_level|capfirst }}" readonly>
         <label for="instructor">Instructor Name</label>
-        <input type="text" id="instructor" class="form-control sign-in-btn-new" placeholder="Instructor Name" name="instructor-name" readonly>
+        <input type="text" id="instructor" class="form-control sign-in-btn-new" placeholder="Instructor Name" value="{{ course.instructor_name }}" name="instructor-name" readonly>
         <button type="submit" class="sign-in-btn-new mt-5 btn pe-5 ps-5">Enroll</button>
     </form>
 {% endblock %}

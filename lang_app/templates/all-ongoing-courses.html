@@ -1,11 +1,10 @@
 {% extends 'dashboard-base.html' %}
 {% load static %}
 {% block content %}
-    <h2> <span class="a-link">All Courses</span></h2>
-    {% for language, courses in courses_by_language.items %}
-    <h2 class="mt-4">{{ language }}</h2>
+    {#    for the ongoing courses#}
+    <h3>Ongoing Courses</h3>
     <div class="row mt-1 blogs">
-    {% for course in courses %}
+    {% for course in enrolled_courses %}
     <div class="col-md-4 justify-content-between mb-5">
     <div class="course-items">
         {% if course.course_level == 'beginner' %}
@@ -17,12 +16,12 @@
         {% endif %}
           <h2 class="mt-4">{{ course.course_name|capfirst }}</h2>
           <p class="a-link">Level: {{ course.course_level|capfirst }}</p>
-          <a href="{% url 'enroll-course' course.id %}" class="sign-in-btn-new mt-5">Enroll</a>
+          <p class="small-date">Enrolled on: {{ course.enrolment_date|date:'d/m/y' }}</p>
+          <a href="" class="sign-in-btn-new mt-3">Continue Learning</a>
     </div>
         </div>
         {% empty %}
-        <p>No courses have been added yet</p>
+        <p>You have no ongoing course at the moment</p>
     {% endfor %}
     </div>
-    {% endfor %}
 {% endblock %}

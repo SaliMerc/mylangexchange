@@ -2,7 +2,7 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login as auth_login
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
-from lang_app.models import MyUser, Blog, Post, Course
+from lang_app.models import MyUser, Blog, Post, Course, EnrolledCourses, CourseModule
 from django.contrib.auth.hashers import check_password
 import requests
 from user_agents import parse as parse_ua
@@ -137,9 +137,22 @@ def dashboard_base(request):
 
 @login_required
 def main_dashboard(request):
-    user = request.user
-    context={"user":user}
+    enrolled_courses=EnrolledCourses.objects.filter(student=request.user,is_completed=False).order_by('-enrolment_date')[:3]
+    completed_courses = EnrolledCourses.objects.filter(student=request.user,is_completed=True).order_by('-enrolment_date')[:3]
+    context={"enrolled_courses":enrolled_courses, "completed_courses":completed_courses}
     return render(request, 'main-dashboard.html', context)
+
+@login_required
+def ongoing_courses(request):
+    enrolled_courses=EnrolledCourses.objects.filter(student=request.user,is_completed=False).order_by('-enrolment_date')
+    context={"enrolled_courses":enrolled_courses}
+    return render(request, 'all-ongoing-courses.html', context)
+
+@login_required
+def completed_courses(request):
+    completed_courses = EnrolledCourses.objects.filter(student=request.user,is_completed=True).order_by('-enrolment_date')
+    context={"completed_courses":completed_courses}
+    return render(request, 'all-completed-courses.html', context)
 
 @login_required
 def logout(request):
@@ -170,5 +183,34 @@ def all_courses(request):
     return render(request, 'all-courses.html', context)
 
 @login_required
-def enroll_course(request):
-    return render(request, 'enroll-course.html')
+def enroll_course(request,id):
+    course=get_object_or_404(Course, id=id)
+    if request.method=="POST":
+        try:
+            student=request.user
+            course_name=course
+            course_level = course.course_level
+            #checking if the student is already enrolled in the course
+            already_enrolled = EnrolledCourses.objects.filter(student=student, course_name=course_name, course_level=course_level).exists()
+
+            if already_enrolled:
+                messages.error(request, "You are already enrolled in this course.")
+            else:
+                #to execute if the student is not enrolled yet in the course
+                course_enrollment = EnrolledCourses.objects.create(student=student, course_name=course_name, course_level=course_level)
+                course_enrollment.save()
+                messages.success(request, "You have successfully enrolled!")
+        except Exception as e:
+            print(e)
+    return render(request, 'enroll-course.html', {"course":course})
+
+@login_required
+def course_modules(request,id):
+    #get the id of the specific course
+    course=get_object_or_404(EnrolledCourses, id=id)
+    print(course)
+    modules=CourseModule.objects.filter(course=course)
+
+    print(modules)
+    context={'modules':modules, "course":course}
+    return render(request, 'course-modules-page.html', context)

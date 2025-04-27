@@ -4,5 +4,83 @@
  <p class="a-link">Welcome back {{ user.first_name| capfirst}} {{ user.last_name|capfirst }}!</p>
 {% endblock %}
 {% block content %}
-<p>This is the dashboard</p>
+    <section>
+    {#    for the ongoing courses#}
+    <a href="{% url 'ongoing-courses' %}">
+        <div class="row align-items-center mb-3">
+            <h3 class="col-md-3">Ongoing Courses</h3>
+            <div class="col-md-2">
+                 <img src="{% static 'images/more-btn.svg' %}" alt="view-all-ongoing-courses" class="img-fluid">
+            </div>
+        </div>
+    </a>
+    <div class="row mt-1 blogs">
+    {% for enrolled in enrolled_courses %}
+    <div class="col-md-4 justify-content-between mb-5">
+    <div class="course-items">
+        {% if enrolled.course_level == 'beginner' %}
+             <img src="{% static 'images/beginner-level.jpg' %}" alt="course-image" class="img-fluid course-image">
+        {% elif enrolled.course_level == 'intermediate' %}
+             <img src="{% static 'images/intermediate-level.jpg' %}" alt="course-image" class="img-fluid course-image">
+        {% elif enrolled.course_level == 'advanced' %}
+             <img src="{% static 'images/advanced-level.jpg' %}" alt="course-image" class="img-fluid course-image">
+        {% endif %}
+          <h2 class="mt-4">{{ enrolled.course_name|capfirst }}</h2>
+          <p class="a-link">Level: {{ enrolled.course_level|capfirst }}</p>
+          <p class="small-date">Enrolled on: {{ enrolled.enrolment_date|date:'d/m/y' }}</p>
+          <a href="{% url 'course-modules' enrolled.id %}" class="sign-in-btn-new mt-3">Continue Learning</a>
+    </div>
+        </div>
+        {% empty %}
+        <p>You have no ongoing course at the moment</p>
+    {% endfor %}
+    </div>
+{#    for the progress charts #}
+     <h3 class="col-md-4">My Learning Charts</h3>
+    <div class="row mt-1 blogs">
+{#        the line chart#}
+    <div class="col-md-6 justify-content-between mb-5">
+    <div class="course-items charts">
+       <p>The line chart will be here</p>
+    </div>
+    </div>
+{#        the bar chart#}
+     <div class="col-md-6 justify-content-between mb-5">
+    <div class="course-items charts">
+       <p>The bar chart will be here</p>
+    </div>
+    </div>
+    </div>
+{#    for the completed courses#}
+<a href="{% url 'completed-courses' %}">
+        <div class="row align-items-center mb-3">
+            <h3 class="col-md-4">Completed Courses</h3>
+            <div class="col-md-2">
+                 <img src="{% static 'images/more-btn.svg' %}" alt="view-all-ongoing-courses" class="img-fluid w-25">
+            </div>
+        </div>
+    </a>
+    <div class="row mt-1 blogs">
+    {% for enrolled in completed_courses %}
+    <div class="col-md-4 justify-content-between mb-5">
+    <div class="course-items">
+        {% if enrolled.course_level == 'beginner' %}
+             <img src="{% static 'images/beginner-level.jpg' %}" alt="course-image" class="img-fluid course-image">
+        {% elif enrolled.course_level == 'intermediate' %}
+             <img src="{% static 'images/intermediate-level.jpg' %}" alt="course-image" class="img-fluid course-image">
+        {% elif enrolled.course_level == 'advanced' %}
+             <img src="{% static 'images/advanced-level.jpg' %}" alt="course-image" class="img-fluid course-image">
+        {% endif %}
+          <h2 class="mt-4">{{ enrolled.course_name|capfirst }}</h2>
+          <p class="a-link">Level: {{ enrolled.course_level|capfirst }}</p>
+          <p class="small-date">Enrolled on: {{ enrolled.enrolment_date|date:'d/m/y' }}</p>
+          <p class="small-date">Completed on: {{ enrolled.completion_date|date:'d/m/y' }}</p>
+          <a href="" class="sign-in-btn-new mt-3">View Course</a>
+    </div>
+        </div>
+        {% empty %}
+        <p>No courses have been completed yet</p>
+    {% endfor %}
+    </div>
+    </section>
 {% endblock %}

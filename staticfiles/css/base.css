@@ -256,7 +256,12 @@ form label{
 .blog-content-page h3{
     color: #FBEC6C;
 }
-
+.small-date{
+    font-size: 0.8rem;
+}
+.charts{
+    min-height: 60vh;
+}
 @media (max-width: 900px){
     /*navbar styling starts*/
     .nav-icon-img{
