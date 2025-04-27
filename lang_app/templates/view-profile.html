@@ -1,0 +1,42 @@
+{% extends 'dashboard-base.html' %}
+{% load static %}
+{% block content %}
+<div class="logout-div sign-in-btn">
+    <div class="row align-items-center mb-5">
+        <div class="col-md-1">
+            <img src="{% static 'images/post-item.png' %}" alt="photo" class="img-fluid display-pic">
+        </div>
+
+        <div class="col-md-6">
+            <a href="">
+            <div class="row">
+                <div class="col-md-1">
+                    <img src="{% static 'images/edit-items.svg' %}" alt="Edit photo">
+                </div>
+                <div class="col-md-5"><p class="a-link">Edit Photo</p></div>
+            </div>
+                 </a>
+        </div>
+
+    </div>
+    <p class="text-left">Username: <span class="a-link">
+        {% if not user.display_name %}
+              No added yet
+        {% else %}
+            {{ user.display_name }}
+        {% endif %}
+    </span></p>
+    <p class="text-left">Full Name: <span class="a-link">{{ user.first_name }} {{ user.last_name }}</span></p>
+    <p class="text-left">Email: <span class="a-link">{{ user.email }}</span></p>
+    <p class="text-left">Phone Number: <span class="a-link">
+         {% if not user.phone_number %}
+            No added yet
+        {% else %}
+            {{ user.phone_number }}
+        {% endif %}
+    </span></p>
+        <div class="col-md-6">
+            <a href="{% url 'update-profile' %}" class="sign-in-btn-new mt-3 mb-4 btn pe-5 ps-5">Update Profile</a>
+        </div>
+</div>
+{% endblock %}

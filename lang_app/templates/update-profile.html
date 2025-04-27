@@ -1,0 +1,27 @@
+{% extends 'dashboard-base.html' %}
+{% load static %}
+{% block content %}
+    {% if messages %}
+            {% for message in messages %}
+                <p style="color: {% if message.tags == 'error' %}#d14d4d{% else %}#435a42{% endif %}; background-color: #FBEC6C; border-radius: 1rem" class="mx-5 p-3" id="alert-items">
+                    {{ message }}
+                </p>
+            {% endfor %}
+    {% endif %}
+    <form action="{% url 'change-password-in-settings' %}" method="post" enctype="multipart/form-data" class="dashboard-forms">
+    {% csrf_token %}
+        <h2> <span class="a-link">Update</span> Profile</h2>
+        <label for="lang">Username</label>
+        <input type="text" id="lang" class="form-control sign-in-btn-new" placeholder="Username" name="display-name" required>
+        <label for="lang-l">Phone Number</label>
+        <input type="text" id="lang-l" class="form-control sign-in-btn-new" placeholder="Phone number" name="phone-number" required>
+        <div class="confirmation-btns justify-content-between">
+            <div class="col-md-6">
+                 <button type="submit" class="sign-in-btn-new mt-5 btn pe-5 ps-5">Update</button>
+            </div>
+            <div class="col-md-6">
+                 <a href="{% url 'dashboard' %}" class="sign-in-btn-new mt-5 btn pe-5 ps-5 cancel-btn">Cancel</a>
+            </div>
+        </div>
+    </form>
+{% endblock %}

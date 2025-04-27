@@ -241,6 +241,7 @@ form label{
     justify-content: center;
     align-self: center;
 }
+
 .confirmation-btns{
     display: flex;
     flex-direction: row;
@@ -261,6 +262,11 @@ form label{
 }
 .charts{
     min-height: 60vh;
+}
+.display-pic{
+    height: 3rem;
+    width: 3rem;
+    border-radius: 50%;
 }
 @media (max-width: 900px){
     /*navbar styling starts*/

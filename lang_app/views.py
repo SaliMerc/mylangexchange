@@ -214,3 +214,16 @@ def course_modules(request,id):
     print(modules)
     context={'modules':modules, "course":course}
     return render(request, 'course-modules-page.html', context)
+
+@login_required
+def view_profile(request):
+    user=request.user
+    return render(request, 'view-profile.html', {"user":user})
+
+@login_required
+def update_profile(request):
+    return render(request, 'update-profile.html')
+
+@login_required
+def settings_password_change(request):
+    return render(request, 'settings-for-password-update.html')
