@@ -227,6 +227,30 @@ def module_lessons(request,id):
     return render(request, 'module-lessons.html', context)
 
 @login_required
+def lesson_content(request,id):
+    current_lesson=get_object_or_404(CourseLesson, id=id)
+
+    # Get the next lesson in the same module
+    next_lesson = CourseLesson.objects.filter(
+        module_name=current_lesson.module_name,  # Same module
+        lesson_number__gt=current_lesson.lesson_number  # Higher lesson number
+    ).order_by('lesson_number').first()  # Get the first one
+
+    #Get previous lesson
+    prev_lesson = CourseLesson.objects.filter(
+        module_name=current_lesson.module_name,
+        lesson_number__lt=current_lesson.lesson_number
+    ).order_by('-lesson_number').first()
+
+    context = {
+        "current_lesson": current_lesson,
+        "next_lesson": next_lesson,
+        "prev_lesson": prev_lesson  # Optional
+    }
+
+    return render(request, 'lesson-content-page.html',context)
+
+@login_required
 def view_profile(request):
     user=request.user
     return render(request, 'view-profile.html', {"user":user})

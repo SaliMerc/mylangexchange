@@ -134,6 +134,7 @@ class CourseLesson(models.Model):
         ('video', 'Video'),
         ('audio', 'Audio'),
         ('read', 'Read'),
+        ('quiz', 'Quiz'),
     ]
     module_name = models.ForeignKey(CourseModule, on_delete=models.CASCADE, related_name='module_lessons')
     lesson_title = models.CharField(max_length=255)

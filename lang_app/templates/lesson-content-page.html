@@ -1,0 +1,121 @@
+{% extends 'dashboard-base.html' %}
+{% load static %}
+{% block content %}
+    {% if current_lesson.lesson_type == 'read' %}
+            <div class="justify-content-center blog-content-page">
+              <h2 class="mt-2">{{ current_lesson.lesson_description|capfirst }}</h2>
+              <h3 class="mt-3 a-link">Lesson Content</h3>
+              <p>
+                  {% autoescape off %}
+                      {{ current_lesson.lesson_content|linebreaks }}
+                  {% endautoescape %}
+              </p>
+            <div class="next-btn mt-5">
+{#            if there is a previous lesson#}
+                 {% if prev_lesson %}
+                     <a href="{% url 'lesson-content' id=prev_lesson.id %}" class="sign-in-btn-new btn pe-2 ps-2 mb-3">Previous Lesson</a>
+                {% else %}
+                    <p class="sign-in-btn-new btn pe-3 ps-3 mb-3 opacity-50 user-select-none pe-none">
+                        First Lesson
+                    </p>
+                {% endif %}
+
+{#            if there is a next lesson#}
+                {% if next_lesson %}
+                    <a href="{% url 'lesson-content' id=next_lesson.id %}" class="sign-in-btn-new btn pe-3 ps-3 mb-3">Next Lesson</a>
+                {% else %}
+                     <p class="sign-in-btn-new btn pe-3 ps-3 mb-3 opacity-50 user-select-none pe-none">
+                        Last Lesson
+                    </p>
+                {% endif %}
+            </div>
+            </div>
+    {% elif current_lesson.lesson_type == 'video' %}
+            <div class="justify-content-center blog-content-page">
+              <h2 class="mt-2">{{ current_lesson.lesson_description|capfirst }}</h2>
+              <h3 class="mt-3 a-link">Lesson Content</h3>
+              <p>
+                  {% autoescape off %}
+                      {{ current_lesson.lesson_content|linebreaks }}
+                  {% endautoescape %}
+              </p>
+                    <div class="next-btn mt-5">
+{#            if there is a previous lesson#}
+                 {% if prev_lesson %}
+                     <a href="{% url 'lesson-content' id=prev_lesson.id %}" class="sign-in-btn-new btn pe-2 ps-2 mb-3">Previous Lesson</a>
+                {% else %}
+                    <p class="sign-in-btn-new btn pe-3 ps-3 mb-3 opacity-50 user-select-none pe-none">
+                        First Lesson
+                    </p>
+                {% endif %}
+
+{#            if there is a next lesson#}
+                {% if next_lesson %}
+                    <a href="{% url 'lesson-content' id=next_lesson.id %}" class="sign-in-btn-new btn pe-3 ps-3 mb-3">Next Lesson</a>
+                {% else %}
+                     <p class="sign-in-btn-new btn pe-3 ps-3 mb-3 opacity-50 user-select-none pe-none">
+                        Last Lesson
+                    </p>
+                {% endif %}
+            </div>
+            </div>
+    {% elif current_lesson.lesson_type == 'audio' %}
+                <div class="justify-content-center blog-content-page">
+                  <h2 class="mt-2">{{ current_lesson.lesson_description|capfirst }}</h2>
+                  <h3 class="mt-3 a-link">Lesson Content</h3>
+                  <p>
+                      {% autoescape off %}
+                          {{ current_lesson.lesson_content|linebreaks }}
+                      {% endautoescape %}
+                  </p>
+                      <div class="next-btn mt-5">
+{#            if there is a previous lesson#}
+                 {% if prev_lesson %}
+                     <a href="{% url 'lesson-content' id=prev_lesson.id %}" class="sign-in-btn-new btn pe-2 ps-2 mb-3">Previous Lesson</a>
+                {% else %}
+                    <p class="sign-in-btn-new btn pe-3 ps-3 mb-3 opacity-50 user-select-none pe-none">
+                        First Lesson
+                    </p>
+                {% endif %}
+
+{#            if there is a next lesson#}
+                {% if next_lesson %}
+                    <a href="{% url 'lesson-content' id=next_lesson.id %}" class="sign-in-btn-new btn pe-3 ps-3 mb-3">Next Lesson</a>
+                {% else %}
+                     <p class="sign-in-btn-new btn pe-3 ps-3 mb-3 opacity-50 user-select-none pe-none">
+                        Complete module
+                    </p>
+                {% endif %}
+            </div>
+                </div>
+    {% else %}
+            <div class="justify-content-center blog-content-page">
+              <h2 class="mt-2">{{ current_lesson.lesson_description|capfirst }}</h2>
+              <h3 class="mt-3 a-link">Lesson Content</h3>
+              <p>
+                  {% autoescape off %}
+                      {{ current_lesson.lesson_content|linebreaks }}
+                  {% endautoescape %}
+              </p>
+                   <div class="next-btn mt-5">
+{#            if there is a previous lesson#}
+                 {% if prev_lesson %}
+                     <a href="{% url 'lesson-content' id=prev_lesson.id %}" class="sign-in-btn-new btn pe-2 ps-2 mb-3">Previous Lesson</a>
+                {% else %}
+                    <p class="sign-in-btn-new btn pe-3 ps-3 mb-3 opacity-50 user-select-none pe-none">
+                        First Lesson
+                    </p>
+                {% endif %}
+
+{#            if there is a next lesson#}
+                {% if next_lesson %}
+                    <a href="{% url 'lesson-content' id=next_lesson.id %}" class="sign-in-btn-new btn pe-3 ps-3 mb-3">Next Lesson</a>
+                {% else %}
+                     <p class="sign-in-btn-new btn pe-3 ps-3 mb-3 opacity-50 user-select-none pe-none">
+                        Last Lesson
+                    </p>
+                {% endif %}
+            </div>
+            </div>
+    {% endif %}
+{% endblock %}

@@ -22,6 +22,7 @@ urlpatterns = [
 
     path('courses/learn/<int:id>/', views.course_modules, name='course-modules'),
     path('courses/learn/modules/<int:id>/', views.module_lessons, name='module-lessons'),
+    path('courses/learn/modules/lesson/<int:id>/', views.lesson_content, name='lesson-content'),
 
 
     path('dashboard/', views.main_dashboard, name='dashboard'),
