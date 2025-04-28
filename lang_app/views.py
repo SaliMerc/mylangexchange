@@ -1,5 +1,5 @@
 from django.contrib import messages
-from django.contrib.auth import authenticate, login as auth_login
+from django.contrib.auth import authenticate, login as auth_login, update_session_auth_hash
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
 from lang_app.models import MyUser, Blog, Post, Course, EnrolledCourses, CourseModule
@@ -222,8 +222,66 @@ def view_profile(request):
 
 @login_required
 def update_profile(request):
-    return render(request, 'update-profile.html')
+    user=request.user
+    if request.method=="POST":
+        try:
+            display_name=request.POST.get("display-name")
+            if MyUser.objects.filter(display_name=display_name).exists():
+                messages.error(request, "This display name is already in use. Please choose another one.")
+            else:
+                user.display_name=display_name
+                user.phone_number=request.POST.get("phone-number")
+                user.save()
+                messages.success(request, "You have successfully updated your profile.")
+        except Exception as e:
+            messages.error(request, "An error was encountered while updating your details")
+            print(e)
+    return render(request, 'update-profile.html',{"user":user})
 
 @login_required
 def settings_password_change(request):
+    #for changing the password when the user is already logged in
+    user=request.user
+    if request.method=="POST":
+        try:
+            old_password=request.POST.get("old-password")
+            new_password=request.POST.get("new-password")
+            confirm_password=request.POST.get("confirm-password")
+
+            if not check_password(old_password,user.password):
+                messages.error(request, "Old password is incorrect.")
+            elif new_password == old_password:
+                messages.error(request, "New password cannot be same as the old password")
+            elif new_password != confirm_password:
+                messages.error(request, "New passwords do not match.")
+            else:
+                user.set_password(new_password)
+                user.save()
+                #for ensuring that the user stays logged in after changing their password
+                update_session_auth_hash(request, user)
+                messages.success(request, "Your password was successfully updated.")
+        except Exception as e:
+            print(e)
+            messages.error(request, "An error was encountered while updating your password")
     return render(request, 'settings-for-password-update.html')
+
+@login_required
+def payments(request):
+    return render(request, 'payments.html')
+
+@login_required
+def edit_profile_pic(request):
+    user=request.user
+    if request.method=="POST":
+        try:
+            if 'profile-picture' in request.FILES:
+                user.profile_picture = request.FILES['profile-picture']
+                user.save()
+                messages.success(request, "Your profile picture has been updated successfully.")
+            else:
+                messages.error(request, "No new profile picture uploaded.")
+
+        except Exception as e:
+            print(e)
+            messages.error(request, "An error was encountered while updating the profile picture")
+    return render(request, 'edit-profile-picture.html')

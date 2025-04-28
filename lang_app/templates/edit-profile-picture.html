@@ -1,0 +1,28 @@
+{% extends 'dashboard-base.html' %}
+{% load static %}
+{% block content %}
+    {% if messages %}
+            {% for message in messages %}
+                <p style="color: {% if message.tags == 'error' %}#d14d4d{% else %}#435a42{% endif %}; background-color: #FBEC6C; border-radius: 1rem" class="mx-5 p-3" id="alert-items">
+                    {{ message }}
+                </p>
+            {% endfor %}
+    {% endif %}
+    <form action="{% url 'edit-profile-picture' %}" method="post" enctype="multipart/form-data" class="dashboard-forms">
+    {% csrf_token %}
+        <h2> <span class="a-link">Update</span> Profile Picture</h2>
+        <input type="file" class="form-control sign-in-btn-new" placeholder="Old password" name="profile-picture" id="upload-field" required style="display: none">
+        <button class="sign-in-btn-new mt-5 btn pe-5 ps-5" onclick="document.getElementById('upload-field').click();">
+             <span style="font-size: 1.2rem;">📤</span>
+            <span>Upload Picture</span>
+        </button>
+        <div class="confirmation-btns justify-content-between">
+            <div class="col-md-6">
+                 <button type="submit" class="sign-in-btn-new mt-5 btn pe-5 ps-5">Save</button>
+            </div>
+            <div class="col-md-6">
+                 <a href="{% url 'view-profile' %}" class="sign-in-btn-new mt-5 btn pe-5 ps-5 cancel-btn">Cancel</a>
+            </div>
+        </div>
+    </form>
+{% endblock %}

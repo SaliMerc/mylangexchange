@@ -43,7 +43,7 @@
              </ul>
              <ul>
                <li><a href="{% url 'view-profile' %}"><img src="{% static 'images/profile.svg' %}" alt="Profile" title="Profile"></a></li>
-               <li><a href=""><img src="{% static 'images/payments.svg' %}" alt="Payments" title="Payments"></a></li>
+               <li><a href="{% url 'payments' %}"><img src="{% static 'images/payments.svg' %}" alt="Payments" title="Payments"></a></li>
                <li><a href="{% url 'change-password-in-settings' %}"><img src="{% static 'images/settings.svg' %}" alt="Settings" title="Settings"></a></li>
                <li><a href="{% url 'logout' %}"><img src="{% static 'images/logout.svg' %}" alt="Logout" title="Logout"></a></li>
              </ul>
@@ -62,7 +62,7 @@
              </ul>
              <ul class="align-items-end">
                <li><a href="{% url 'view-profile' %}">Profile</a></li>
-               <li><a href="">Payments</a></li>
+               <li><a href="{% url 'payments' %}">Payments</a></li>
                <li><a href="{% url 'change-password-in-settings' %}">Settings</a></li>
                <li><a href="{% url 'logout' %}">Logout</a></li>
              </ul>

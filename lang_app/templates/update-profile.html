@@ -8,7 +8,7 @@
                 </p>
             {% endfor %}
     {% endif %}
-    <form action="{% url 'change-password-in-settings' %}" method="post" enctype="multipart/form-data" class="dashboard-forms">
+    <form action="{% url 'update-profile' %}" method="post" enctype="multipart/form-data" class="dashboard-forms">
     {% csrf_token %}
         <h2> <span class="a-link">Update</span> Profile</h2>
         <label for="lang">Username</label>
@@ -20,7 +20,7 @@
                  <button type="submit" class="sign-in-btn-new mt-5 btn pe-5 ps-5">Update</button>
             </div>
             <div class="col-md-6">
-                 <a href="{% url 'dashboard' %}" class="sign-in-btn-new mt-5 btn pe-5 ps-5 cancel-btn">Cancel</a>
+                 <a href="{% url 'view-profile' %}" class="sign-in-btn-new mt-5 btn pe-5 ps-5 cancel-btn">Cancel</a>
             </div>
         </div>
     </form>

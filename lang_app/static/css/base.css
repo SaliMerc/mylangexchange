@@ -267,16 +267,28 @@ form label{
     height: 3rem;
     width: 3rem;
     border-radius: 50%;
+    object-fit: cover;
+}
+.update-photo{
+    display: flex;
+    gap: 1rem;
+}
+.update-edit-photo{
+    display: flex;
+    gap: 0.2rem;
+}
+.profile-texts{
+    font-size: 1.3rem;
 }
 @media (max-width: 900px){
     /*navbar styling starts*/
     .nav-icon-img{
     display: block;
-}
-    .this-div{
-        display: none !important;
-        transition: 1s ease-in-out;
     }
+    /*.this-div{*/
+    /*    display: none !important;*/
+    /*    transition: 1s ease-in-out;*/
+    /*}*/
     .list{
         background-color: #FBEC6C;
         box-shadow: 0.3rem 1rem 1rem #000000;
@@ -341,5 +353,8 @@ form label{
         min-height: 100vh;
         margin-left: 0;
         width: 100%;
+}
+    .profile-texts{
+        font-size: 0.8rem;
 }
 }
