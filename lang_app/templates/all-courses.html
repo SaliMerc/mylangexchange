@@ -17,8 +17,7 @@
         {% endif %}
           <h2 class="mt-4">{{ course.course_name|capfirst }}</h2>
           <p class="a-link">Level: {{ course.course_level|capfirst }}</p>
-          <a href="{% url 'enroll-course' course.id %}" class="sign-in-btn-new mt-5">Enroll</a>
-    </div>
+                 <a href="{% url 'enroll-course' course.id %}" class="sign-in-btn-new mt-5">Enroll</a></div>
         </div>
         {% empty %}
         <p>No courses have been added yet</p>

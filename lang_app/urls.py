@@ -21,9 +21,15 @@ urlpatterns = [
     path('courses/completed-courses/', views.completed_courses, name='completed-courses'),
 
     path('courses/learn/<int:id>/', views.course_modules, name='course-modules'),
+    path('courses/learn/modules/<int:id>/', views.module_lessons, name='module-lessons'),
+
 
     path('dashboard/', views.main_dashboard, name='dashboard'),
     path('logout/', views.logout, name='logout'),
+
+    path('find-partners/', views.find_partners, name='find-partners'),
+    path('posts/', views.posts, name='posts'),
+    path('chats/', views.chats, name='chats'),
 
     path('account/payments/', views.payments, name='payments'),
     path('account/profile-picture/', views.edit_profile_pic, name='edit-profile-picture'),

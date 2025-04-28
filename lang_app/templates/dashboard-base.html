@@ -37,9 +37,9 @@
              <ul>
               <li><a href="{% url 'dashboard' %}"><img src="{% static 'images/home.svg' %}" alt="Home" class="img-fluid" title="Home"></a></li>
                <li><a href="{% url 'all-courses' %}"><img src="{% static 'images/courses.svg' %}" alt="Courses" title="Courses"></a></li>
-               <li><a href=""><img src="{% static 'images/partners.svg' %}" alt="Partners" title="Find Partners"></a></li>
-               <li><a href=""><img src="{% static 'images/chats.svg' %}" alt="Chats" title="Chats"></a></li>
-               <li><a href=""><img src="{% static 'images/posts.svg' %}" alt="Posts" title="Posts"></a></li>
+               <li><a href="{% url 'find-partners' %}"><img src="{% static 'images/partners.svg' %}" alt="Partners" title="Find Partners"></a></li>
+               <li><a href="{% url 'chats' %}"><img src="{% static 'images/chats.svg' %}" alt="Chats" title="Chats"></a></li>
+               <li><a href="{% url 'posts' %}"><img src="{% static 'images/posts.svg' %}" alt="Posts" title="Posts"></a></li>
                <li><a href="{% url 'logged-blog' %}"><img src="{% static 'images/blog.svg' %}" alt="Blog" title="Blog"></a></li>
              </ul>
              <ul>
@@ -56,9 +56,9 @@
              <ul>
                <li><a href="{% url 'dashboard' %}">Home</a></li>
                <li><a href="{% url 'all-courses' %}">Courses</a></li>
-               <li><a href="">Find partners</a></li>
-               <li><a href="">Chats</a></li>
-               <li><a href="">Posts</a></li>
+               <li><a href="{% url 'find-partners' %}">Find partners</a></li>
+               <li><a href="{% url 'chats' %}">Chats</a></li>
+               <li><a href="{% url 'posts' %}">Posts</a></li>
                <li><a href="{% url 'logged-blog' %}">Blog</a></li>
              </ul>
              <ul class="align-items-end">
@@ -74,7 +74,7 @@
 </div>
 <div class="col-md-9 main-content" id="main-content">
 <div class="d-flex flex-column mt-4">
-    <div class="justify-content-between page-heading mb-4 align-center">
+    <div class="page-heading mb-4 text-left">
         <div class="col-md-6">
             <img src="{% static 'images/collapse-menu.svg' %}" alt="collapse-menu" id="collapse">
         </div>
@@ -92,7 +92,6 @@
 </div>
 </div>
  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
-<script src="{% static 'js/base.js' %}"></script>
 <script src="{% static 'js/dashboard.js' %}"></script>
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 </body>

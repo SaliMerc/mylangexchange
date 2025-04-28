@@ -2,7 +2,7 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login as auth_login, update_session_auth_hash
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
-from lang_app.models import MyUser, Blog, Post, Course, EnrolledCourses, CourseModule
+from lang_app.models import MyUser, Blog, Post, Course, EnrolledCourses, CourseModule, CourseLesson
 from django.contrib.auth.hashers import check_password
 import requests
 from user_agents import parse as parse_ua
@@ -170,8 +170,10 @@ def blog_single_post_logged_in(request, id):
 
 @login_required
 def all_courses(request):
+    user=request.user
     courses=Course.objects.all()
 
+    is_enrolled = EnrolledCourses.objects.filter(student=user)
     courses_by_language = {}
     for course in courses:
         language = course.course_name
@@ -179,7 +181,7 @@ def all_courses(request):
             courses_by_language[language] = []
         courses_by_language[language].append(course)
 
-    context={'courses':courses,"courses_by_language":courses_by_language}
+    context={'courses':courses,"courses_by_language":courses_by_language,"is_enrolled":is_enrolled}
     return render(request, 'all-courses.html', context)
 
 @login_required
@@ -206,14 +208,23 @@ def enroll_course(request,id):
 
 @login_required
 def course_modules(request,id):
-    #get the id of the specific course
-    course=get_object_or_404(EnrolledCourses, id=id)
-    print(course)
-    modules=CourseModule.objects.filter(course=course)
-
-    print(modules)
-    context={'modules':modules, "course":course}
+    my_course = get_object_or_404(
+        EnrolledCourses,
+        id=id,
+        student=request.user
+    )
+    modules = CourseModule.objects.filter(
+        course=my_course.course_name
+    ).order_by('module_order')
+    context={'modules':modules, "my_course":my_course}
     return render(request, 'course-modules-page.html', context)
+
+@login_required
+def module_lessons(request,id):
+    module = get_object_or_404(CourseModule,id=id)
+    lessons = module.module_lessons.all().order_by('lesson_number')
+    context={'lessons':lessons, "module":module}
+    return render(request, 'module-lessons.html', context)
 
 @login_required
 def view_profile(request):
@@ -266,10 +277,6 @@ def settings_password_change(request):
     return render(request, 'settings-for-password-update.html')
 
 @login_required
-def payments(request):
-    return render(request, 'payments.html')
-
-@login_required
 def edit_profile_pic(request):
     user=request.user
     if request.method=="POST":
@@ -285,3 +292,19 @@ def edit_profile_pic(request):
             print(e)
             messages.error(request, "An error was encountered while updating the profile picture")
     return render(request, 'edit-profile-picture.html')
+
+@login_required
+def payments(request):
+    return render(request, 'payments.html')
+
+@login_required
+def find_partners(request):
+    return render(request, 'find-partners.html')
+
+@login_required
+def posts(request):
+    return render(request, 'posts.html')
+
+@login_required
+def chats(request):
+    return render(request, 'chats.html')

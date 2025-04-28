@@ -205,7 +205,7 @@ form label{
 .page-heading{
     display: flex;
     flex-direction: row !important;
-    justify-content: space-between !important;
+    gap: 2rem;
 }
 #collapse{
     cursor: pointer;
@@ -285,15 +285,11 @@ form label{
     .nav-icon-img{
     display: block;
     }
-    /*.this-div{*/
-    /*    display: none !important;*/
-    /*    transition: 1s ease-in-out;*/
-    /*}*/
     .list{
         background-color: #FBEC6C;
         box-shadow: 0.3rem 1rem 1rem #000000;
         border-radius: 1rem;
-        min-width: 80vw;
+        min-width: 100vw;
         min-height: 50vh;
         display: flex;
         flex-direction: column;
@@ -346,7 +342,7 @@ form label{
         .all-icons{
         display: flex;
         flex-direction: column;
-        gap:7rem;
+        gap:4rem;
         align-items: center;
     }
     .main-content{
@@ -356,5 +352,8 @@ form label{
 }
     .profile-texts{
         font-size: 0.8rem;
+}
+    .page-heading{
+        gap: 10rem;
 }
 }

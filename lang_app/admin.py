@@ -20,3 +20,7 @@ class EnrolledCourseModelAdmin(admin.ModelAdmin):
 @admin.register(CourseModule)
 class CourseModuleModelAdmin(admin.ModelAdmin):
     list_display = ("course","module_title", "module_description","module_order")
+
+@admin.register(CourseLesson)
+class CourseLessonModelAdmin(admin.ModelAdmin):
+    list_display = ("module_name","lesson_title", "lesson_description","lesson_content","lesson_type","lesson_file","lesson_number")

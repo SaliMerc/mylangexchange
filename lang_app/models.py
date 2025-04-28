@@ -91,8 +91,10 @@ class Course(models.Model):
     instructor_name=models.CharField(max_length=255)
     difficulty = models.IntegerField(choices=DIFFICULTY_CHOICES, default=1)
 
+    # def __str__(self):
+    #     return self.course_name
     def __str__(self):
-        return self.course_name
+        return f"{self.course_name} - {self.course_level}"
 
     class Meta:
         ordering = ['course_name','difficulty']
@@ -115,13 +117,14 @@ class EnrolledCourses(models.Model):
 
 
 class CourseModule(models.Model):
-    course = models.ForeignKey(EnrolledCourses, on_delete=models.CASCADE, related_name='course_modules')
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='course_modules')
     module_title = models.CharField(max_length=255)
     module_description = models.TextField()
     module_order = models.IntegerField(default=1)
 
     def __str__(self):
-        return self.module_title
+        return f"{self.module_title} - {self.course}"
+        # return self.module_title
 
 
 # To do: add a quiz table that stores questions that will be shown at the end of each module

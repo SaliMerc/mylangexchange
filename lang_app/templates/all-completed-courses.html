@@ -14,10 +14,10 @@
         {% elif course.course_level == 'advanced' %}
              <img src="{% static 'images/advanced-level.jpg' %}" alt="course-image" class="img-fluid course-image">
         {% endif %}
-          <h2 class="mt-4">{{ course.course_name|capfirst }}</h2>
+          <h2 class="mt-4">{{ course.course_name.course_name|capfirst }}</h2>
           <p class="a-link">Level: {{ course.course_level|capfirst }}</p>
           <p class="small-date">Enrolled on: {{ course.enrolment_date|date:'d/m/y' }}</p>
-          <a href="" class="sign-in-btn-new mt-3">Continue Learning</a>
+          <a href="{% url 'course-modules' course.id %}" class="sign-in-btn-new mt-3">Continue Learning</a>
     </div>
         </div>
         {% empty %}
