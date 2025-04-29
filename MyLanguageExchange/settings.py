@@ -43,7 +43,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'lang_app',
+    'lang_app.apps.LangAppConfig',
+    # 'lang_app',
 ]
 
 MIDDLEWARE = [
@@ -93,6 +94,8 @@ DATABASES = {
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 AUTH_USER_MODEL='lang_app.MyUser'
+
+ASSEMBLYAI_API_KEY = '819f19ba2e624f6c9ffb49ba892253c4'
 
 AUTH_PASSWORD_VALIDATORS = [
     {

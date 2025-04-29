@@ -33,10 +33,17 @@
     {% elif current_lesson.lesson_type == 'video' %}
             <div class="justify-content-center blog-content-page">
               <h2 class="mt-2">{{ current_lesson.lesson_description|capfirst }}</h2>
-              <h3 class="mt-3 a-link">Lesson Content</h3>
+                    <video class="post-image-full video-full" autoplay controls>
+                          <source src="{{ current_lesson.lesson_file.url }}" type="video/mp4">
+                </video>
+              <h3 class="mt-3 a-link">Transcript</h3>
               <p>
                   {% autoescape off %}
-                      {{ current_lesson.lesson_content|linebreaks }}
+                      {% if current_lesson.lesson_transcript %}
+                          {{ current_lesson.lesson_transcript|linebreaks }}
+                      {% else %}
+                          No transcript available yet
+                      {% endif %}
                   {% endautoescape %}
               </p>
                     <div class="next-btn mt-5">
@@ -60,14 +67,28 @@
             </div>
             </div>
     {% elif current_lesson.lesson_type == 'audio' %}
-                <div class="justify-content-center blog-content-page">
-                  <h2 class="mt-2">{{ current_lesson.lesson_description|capfirst }}</h2>
-                  <h3 class="mt-3 a-link">Lesson Content</h3>
-                  <p>
-                      {% autoescape off %}
-                          {{ current_lesson.lesson_content|linebreaks }}
-                      {% endautoescape %}
-                  </p>
+          <div class="justify-content-center blog-content-page">
+                <div class="audio-title mb-4">
+                    <div class="col-md-1">
+                        <img src="{% static 'images/audio-icon.svg' %}" alt="audio-icon" class="img-fluid">
+                    </div>
+                    <div class="col-md-11">
+                           <h2 class="mt-2">{{ current_lesson.lesson_description|capfirst }}</h2>
+                    </div>
+                </div>
+                    <audio class="video-full audio" autoplay controls>
+                          <source src="{{ current_lesson.lesson_file.url }}" type="audio/mpeg">
+                    </audio>
+              <h3 class="mt-3 a-link">Transcript</h3>
+              <p>
+                  {% autoescape off %}
+                      {% if current_lesson.lesson_transcript %}
+                          {{ current_lesson.lesson_transcript|linebreaks }}
+                      {% else %}
+                          No transcript available yet
+                      {% endif %}
+                  {% endautoescape %}
+              </p>
                       <div class="next-btn mt-5">
 {#            if there is a previous lesson#}
                  {% if prev_lesson %}
@@ -83,7 +104,7 @@
                     <a href="{% url 'lesson-content' id=next_lesson.id %}" class="sign-in-btn-new btn pe-3 ps-3 mb-3">Next Lesson</a>
                 {% else %}
                      <p class="sign-in-btn-new btn pe-3 ps-3 mb-3 opacity-50 user-select-none pe-none">
-                        Complete module
+                        Last Lesson
                     </p>
                 {% endif %}
             </div>
@@ -109,10 +130,10 @@
 
 {#            if there is a next lesson#}
                 {% if next_lesson %}
-                    <a href="{% url 'lesson-content' id=next_lesson.id %}" class="sign-in-btn-new btn pe-3 ps-3 mb-3">Next Lesson</a>
+                    <a href="{% url 'lesson-content' id=next_lesson.id %}" class="sign-in-btn-new btn pe-3 ps-3 mb-3">Next Quiz</a>
                 {% else %}
                      <p class="sign-in-btn-new btn pe-3 ps-3 mb-3 opacity-50 user-select-none pe-none">
-                        Last Lesson
+                        Complete module
                     </p>
                 {% endif %}
             </div>

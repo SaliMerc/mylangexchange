@@ -193,6 +193,17 @@ form label{
     object-fit: cover;
     border-radius: 4rem 4rem 0 4rem;
 }
+.video-full{
+    border-radius: 2rem 2rem 0 2rem;
+}
+.audio{
+    width: 100%;
+}
+.audio-title{
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+}
 .post-date{
     font-size: 0.8rem;
 }
