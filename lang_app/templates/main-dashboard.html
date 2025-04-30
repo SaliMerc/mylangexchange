@@ -28,7 +28,7 @@
           <h2 class="mt-4">{{ enrolled.course_name.course_name|capfirst }}</h2>
           <p class="a-link">Level: {{ enrolled.course_level|capfirst }}</p>
           <p class="small-date">Enrolled on: {{ enrolled.enrolment_date|date:'d/m/y' }}</p>
-          <a href="{% url 'course-modules' enrolled.id %}" class="sign-in-btn-new mt-3">Continue Learning</a>
+          <a href="{% url 'course-modules' enrolled.slug %}" class="sign-in-btn-new mt-3">Continue Learning</a>
     </div>
         </div>
         {% empty %}
@@ -75,7 +75,7 @@
           <p class="a-link">Level: {{ enrolled.course_level|capfirst }}</p>
           <p class="small-date">Enrolled on: {{ enrolled.enrolment_date|date:'d/m/y' }}</p>
           <p class="small-date">Completed on: {{ enrolled.completion_date|date:'d/m/y' }}</p>
-          <a href="{% url 'course-modules' enrolled.id %}" class="sign-in-btn-new mt-3">View Course</a>
+          <a href="{% url 'course-modules' enrolled.slug %}" class="sign-in-btn-new mt-3">View Course</a>
     </div>
         </div>
         {% empty %}

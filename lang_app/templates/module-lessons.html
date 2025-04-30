@@ -6,7 +6,7 @@
     {% for lesson in lessons %}
         <div class="row mb-5 lesson-items me-2 ms-2">
             <div class="col-md-8">
-                 <h3 class="a-link">{{ lesson.lesson_title|capfirst }}:</h3>
+                 <h3 class="a-link">Lesson {{ lesson.lesson_number }}:</h3>
                   <p class="">{{ lesson.lesson_description|capfirst }}</p>
             </div>
             <div class="col-md-2">
@@ -15,13 +15,13 @@
             </div>
             <div class="col-md-1">
                 {% if lesson.lesson_type == 'read' %}
-                    <a href="{% url 'lesson-content' lesson.id %}" class="sign-in-btn-new btn pe-5 ps-5 mb-3">Read</a>
+                    <a href="{% url 'lesson-content' lesson.slug %}" class="sign-in-btn-new btn pe-5 ps-5 mb-3">Read</a>
                 {% elif lesson.lesson_type == 'audio' %}
-                    <a href="{% url 'lesson-content' lesson.id %}" class="sign-in-btn-new btn pe-5 ps-5 mb-3">Listen</a>
+                    <a href="{% url 'lesson-content' lesson.slug %}" class="sign-in-btn-new btn pe-5 ps-5 mb-3">Listen</a>
                 {% elif lesson.lesson_type == 'video' %}
-                    <a href="{% url 'lesson-content' lesson.id %}" class="sign-in-btn-new btn pe-5 ps-5 mb-3">Watch</a>
+                    <a href="{% url 'lesson-content' lesson.slug %}" class="sign-in-btn-new btn pe-5 ps-5 mb-3">Watch</a>
                 {% else %}
-                    <a href="{% url 'lesson-content' lesson.id %}" class="sign-in-btn-new btn pe-5 ps-5 mb-3">Take Quiz</a>
+                    <a href="{% url 'lesson-content' lesson.slug %}" class="sign-in-btn-new btn pe-5 ps-5 mb-3">Take Quiz</a>
                 {% endif %}
             </div>
         </div>

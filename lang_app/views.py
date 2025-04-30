@@ -128,8 +128,8 @@ def blog_list(request):
     blogs=Blog.objects.all().order_by('-created_at')
     return render(request, 'blog.html',{'blogs':blogs})
 
-def blog_single_content(request,id):
-    blog = get_object_or_404(Blog, id=id)
+def blog_single_content(request,slug):
+    blog = get_object_or_404(Blog, slug=slug)
     return render(request, 'blog-single-content.html', {"blog": blog})
 
 def dashboard_base(request):
@@ -164,8 +164,8 @@ def blog_logged_in(request):
     return render(request, 'blog-logged-in.html', {'blogs':blogs})
 
 @login_required
-def blog_single_post_logged_in(request, id):
-    blog=get_object_or_404(Blog, id=id)
+def blog_single_post_logged_in(request, slug):
+    blog=get_object_or_404(Blog, slug=slug)
     return render(request, 'blog-single-content-logged-in.html', {'blog':blog})
 
 @login_required
@@ -185,8 +185,8 @@ def all_courses(request):
     return render(request, 'all-courses.html', context)
 
 @login_required
-def enroll_course(request,id):
-    course=get_object_or_404(Course, id=id)
+def enroll_course(request,slug):
+    course=get_object_or_404(Course, slug=slug)
     if request.method=="POST":
         try:
             student=request.user
@@ -199,18 +199,19 @@ def enroll_course(request,id):
                 messages.error(request, "You are already enrolled in this course.")
             else:
                 #to execute if the student is not enrolled yet in the course
-                course_enrollment = EnrolledCourses.objects.create(student=student, course_name=course_name, course_level=course_level)
+                course_enrollment = EnrolledCourses.objects.create(student=student, course_name=course_name, course_level=course_level, is_enrolled=True)
                 course_enrollment.save()
                 messages.success(request, "You have successfully enrolled!")
+                return redirect("dashboard")
         except Exception as e:
             print(e)
     return render(request, 'enroll-course.html', {"course":course})
 
 @login_required
-def course_modules(request,id):
+def course_modules(request,slug):
     my_course = get_object_or_404(
         EnrolledCourses,
-        id=id,
+        slug=slug,
         student=request.user
     )
     modules = CourseModule.objects.filter(
@@ -220,15 +221,15 @@ def course_modules(request,id):
     return render(request, 'course-modules-page.html', context)
 
 @login_required
-def module_lessons(request,id):
-    module = get_object_or_404(CourseModule,id=id)
+def module_lessons(request,slug):
+    module = get_object_or_404(CourseModule,slug=slug)
     lessons = module.module_lessons.all().order_by('lesson_number')
     context={'lessons':lessons, "module":module}
     return render(request, 'module-lessons.html', context)
 
 @login_required
-def lesson_content(request,id):
-    current_lesson=get_object_or_404(CourseLesson, id=id)
+def lesson_content(request,slug):
+    current_lesson=get_object_or_404(CourseLesson, slug=slug)
 
     # Get the next lesson in the same module
     next_lesson = CourseLesson.objects.filter(

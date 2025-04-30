@@ -8,7 +8,7 @@
                 </p>
             {% endfor %}
     {% endif %}
-    <form action="{% url 'enroll-course' course.id %}" method="post" enctype="multipart/form-data" class="dashboard-forms">
+    <form action="{% url 'enroll-course' course.slug %}" method="post" enctype="multipart/form-data" class="dashboard-forms">
     {% csrf_token %}
         <h2> <span class="a-link">Confirm</span> Enrollment</h2>
         <label for="lang">Language</label>

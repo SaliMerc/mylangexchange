@@ -4,7 +4,7 @@
 {#for the specific modules of the courses#}
       <h2><span class="a-link">{{ my_course.course_name.course_name }}-</span>{{ my_course.course_level|capfirst }}</h2>
     {% for module in modules %}
-        <a href="{% url 'module-lessons' module.id %}">
+        <a href="{% url 'module-lessons' module.slug %}">
             <div class="course-items mb-5 module-items">
                   <h3 class="a-link">{{ module.module_title }}</h3>
                   <p class="">{{ module.module_description }}</p>

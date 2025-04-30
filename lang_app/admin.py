@@ -15,7 +15,7 @@ class CourseModelAdmin(admin.ModelAdmin):
 
 @admin.register(EnrolledCourses)
 class EnrolledCourseModelAdmin(admin.ModelAdmin):
-    list_display = ("student", "course_name","course_level", "enrolment_date", "progress", "completion_date")
+    list_display = ("student", "course_name","course_level", "enrolment_date", "is_enrolled", "completion_date")
 
 @admin.register(CourseModule)
 class CourseModuleModelAdmin(admin.ModelAdmin):
@@ -23,4 +23,4 @@ class CourseModuleModelAdmin(admin.ModelAdmin):
 
 @admin.register(CourseLesson)
 class CourseLessonModelAdmin(admin.ModelAdmin):
-    list_display = ("module_name","lesson_title", "lesson_description","lesson_content","lesson_type","lesson_file","lesson_number")
+    list_display = ("module_name", "lesson_description","lesson_content","lesson_type","lesson_file","lesson_number")

@@ -13,7 +13,7 @@
             <div class="next-btn mt-5">
 {#            if there is a previous lesson#}
                  {% if prev_lesson %}
-                     <a href="{% url 'lesson-content' id=prev_lesson.id %}" class="sign-in-btn-new btn pe-2 ps-2 mb-3">Previous Lesson</a>
+                     <a href="{% url 'lesson-content' slug=prev_lesson.slug %}" class="sign-in-btn-new btn pe-2 ps-2 mb-3">Previous Lesson</a>
                 {% else %}
                     <p class="sign-in-btn-new btn pe-3 ps-3 mb-3 opacity-50 user-select-none pe-none">
                         First Lesson
@@ -22,7 +22,7 @@
 
 {#            if there is a next lesson#}
                 {% if next_lesson %}
-                    <a href="{% url 'lesson-content' id=next_lesson.id %}" class="sign-in-btn-new btn pe-3 ps-3 mb-3">Next Lesson</a>
+                    <a href="{% url 'lesson-content' slug=next_lesson.slug %}" class="sign-in-btn-new btn pe-3 ps-3 mb-3">Next Lesson</a>
                 {% else %}
                      <p class="sign-in-btn-new btn pe-3 ps-3 mb-3 opacity-50 user-select-none pe-none">
                         Last Lesson
@@ -49,7 +49,7 @@
                     <div class="next-btn mt-5">
 {#            if there is a previous lesson#}
                  {% if prev_lesson %}
-                     <a href="{% url 'lesson-content' id=prev_lesson.id %}" class="sign-in-btn-new btn pe-2 ps-2 mb-3">Previous Lesson</a>
+                     <a href="{% url 'lesson-content' slug=prev_lesson.slug %}" class="sign-in-btn-new btn pe-2 ps-2 mb-3">Previous Lesson</a>
                 {% else %}
                     <p class="sign-in-btn-new btn pe-3 ps-3 mb-3 opacity-50 user-select-none pe-none">
                         First Lesson
@@ -58,7 +58,7 @@
 
 {#            if there is a next lesson#}
                 {% if next_lesson %}
-                    <a href="{% url 'lesson-content' id=next_lesson.id %}" class="sign-in-btn-new btn pe-3 ps-3 mb-3">Next Lesson</a>
+                    <a href="{% url 'lesson-content' slug=next_lesson.slug %}" class="sign-in-btn-new btn pe-3 ps-3 mb-3">Next Lesson</a>
                 {% else %}
                      <p class="sign-in-btn-new btn pe-3 ps-3 mb-3 opacity-50 user-select-none pe-none">
                         Last Lesson
@@ -92,7 +92,7 @@
                       <div class="next-btn mt-5">
 {#            if there is a previous lesson#}
                  {% if prev_lesson %}
-                     <a href="{% url 'lesson-content' id=prev_lesson.id %}" class="sign-in-btn-new btn pe-2 ps-2 mb-3">Previous Lesson</a>
+                     <a href="{% url 'lesson-content' slug=prev_lesson.slug %}" class="sign-in-btn-new btn pe-2 ps-2 mb-3">Previous Lesson</a>
                 {% else %}
                     <p class="sign-in-btn-new btn pe-3 ps-3 mb-3 opacity-50 user-select-none pe-none">
                         First Lesson
@@ -101,7 +101,7 @@
 
 {#            if there is a next lesson#}
                 {% if next_lesson %}
-                    <a href="{% url 'lesson-content' id=next_lesson.id %}" class="sign-in-btn-new btn pe-3 ps-3 mb-3">Next Lesson</a>
+                    <a href="{% url 'lesson-content' slug=next_lesson.slug %}" class="sign-in-btn-new btn pe-3 ps-3 mb-3">Next Lesson</a>
                 {% else %}
                      <p class="sign-in-btn-new btn pe-3 ps-3 mb-3 opacity-50 user-select-none pe-none">
                         Last Lesson
@@ -121,7 +121,7 @@
                    <div class="next-btn mt-5">
 {#            if there is a previous lesson#}
                  {% if prev_lesson %}
-                     <a href="{% url 'lesson-content' id=prev_lesson.id %}" class="sign-in-btn-new btn pe-2 ps-2 mb-3">Previous Lesson</a>
+                     <a href="{% url 'lesson-content' slug=prev_lesson.slug %}" class="sign-in-btn-new btn pe-2 ps-2 mb-3">Previous Lesson</a>
                 {% else %}
                     <p class="sign-in-btn-new btn pe-3 ps-3 mb-3 opacity-50 user-select-none pe-none">
                         First Lesson
@@ -130,7 +130,7 @@
 
 {#            if there is a next lesson#}
                 {% if next_lesson %}
-                    <a href="{% url 'lesson-content' id=next_lesson.id %}" class="sign-in-btn-new btn pe-3 ps-3 mb-3">Next Quiz</a>
+                    <a href="{% url 'lesson-content' slug=next_lesson.slug %}" class="sign-in-btn-new btn pe-3 ps-3 mb-3">Next Quiz</a>
                 {% else %}
                      <p class="sign-in-btn-new btn pe-3 ps-3 mb-3 opacity-50 user-select-none pe-none">
                         Complete module
