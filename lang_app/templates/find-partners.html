@@ -1,7 +1,65 @@
 {% extends 'dashboard-base.html' %}
 {% load static %}
 {% block content %}
-<div class="logout-div sign-in-btn">
-    <p class="text-center profile-texts"><span class="">Coming soon😊</span></p>
-</div>
+    <h2>Find Partners</h2>
+    <div class="searches">
+        <form action="" method="get" class="search-form">
+            <div class="col-md-4">
+                <select name="" id="" class="form-control sign-in-btn-new">
+                    <option value="" disabled selected>Learning...</option>
+                    <option value=""></option>
+                </select>
+            </div>
+             <div class="col-md-4">
+                <select name="" id="" class="form-control sign-in-btn-new">
+                    <option value="" disabled selected>Speaking...</option>
+                    <option value=""></option>
+                </select>
+            </div>
+             <div class="col-md-3">
+                <button type="submit" class=" form-control sign-in-btn-new search-submit" id="search-submit">Filter</button>
+            </div>
+        </form>
+    </div>
+    <div class="row mt-5 blogs">
+    {% for user in users %}
+    <div class="col-md-4 justify-content-between mb-4">
+    <div class="course-items">
+        <div class="update-photo align-items-center">
+        <div class="col-md-2">
+            {% if user.profile_picture %}
+                 <img src="{{ user.profile_picture.url }}" alt="photo" class="img-fluid display-pic">
+            {% else %}
+                 <img src="{% static 'images/dp.jpg' %}" alt="photo" class="img-fluid display-pic">
+            {% endif %}
+        </div>
+
+        <div class="col-md-6">
+                <div class=""><p class="a-link">{{ user.display_name|capfirst }}</p></div>
+        </div>
+
+    </div>
+
+          <h4 class="mt-4"> Learning:
+              {{ user.user_courses|length }}
+              {% if user.user_courses|length == 1 %}
+                   Course
+              {% else %}
+                   Courses
+              {% endif %}
+          </h4>
+    <div class="row">
+         {% for course in user.user_courses %}
+             <div class="col-md-6">
+                 <p class="a-link small-date">{{ course.course_name.course_name }} - {{ course.course_level|capfirst }}</p>
+             </div>
+         {% endfor %}
+    </div>
+          <a href="" class="sign-in-btn-new mt-3">Message</a>
+    </div>
+        </div>
+        {% empty %}
+        <p>No partners available at the moment</p>
+    {% endfor %}
+    </div>
 {% endblock %}

@@ -18,6 +18,13 @@ h3{
     font-size: 1.8rem;
     font-weight: 600;
 }
+h4{
+    font-size: 1.7rem;
+    color: #E3E0C0;
+}
+select option{
+    background-color: #8F5932 !important;
+}
 p{
     font-family: "Poppins", sans-serif;
     font-size: 1.4rem;
@@ -261,7 +268,22 @@ form label{
     justify-content: center;
     align-self: center;
 }
-
+.search-form{
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    min-height: 5rem !important;
+    background-color: #8F5932;
+    padding: 0.5rem 1rem 0.5rem 1rem;
+    border-radius: 1rem 1rem 0 1rem;
+    box-shadow: 0.3rem 1.5rem 1rem #8F5932;
+    /*height: 5rem !important;*/
+}
+.search-submit{
+    background-color: #8F5932;
+    color: #E3E0C0;
+    box-shadow: none;
+}
 .confirmation-btns{
     display: flex;
     flex-direction: row;

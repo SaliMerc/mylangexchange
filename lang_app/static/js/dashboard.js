@@ -3,6 +3,8 @@ const dash_elements=document.getElementById('dashboard-view');
 const icon_description=document.getElementById('icon-description');
 const icons=document.getElementsByClassName('.all-icons');
 const main_content=document.getElementById('main-content');
+const search_form=document.getElementById('search-submit');
+
 
 if (window.innerWidth < 900) {
     dashboard.addEventListener('click', () => {

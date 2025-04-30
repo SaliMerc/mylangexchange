@@ -47,7 +47,8 @@ class CustomUserManager(BaseUserManager):
 
         return self.create_user(email, username, password, **extra_fields)
 
-
+def user_slug_populate(instance):
+    return instance.display_name
 class MyUser(AbstractUser):
     email = models.EmailField(unique=True)
     country=models.CharField(max_length=30)
@@ -56,6 +57,7 @@ class MyUser(AbstractUser):
     display_name=CharField(unique=True, max_length=255, blank=True, null=True)
     phone_number = models.CharField(unique=True, max_length=255, blank=True, null=True)
     profile_picture = models.ImageField(upload_to='profile_pictures', blank=True, null=True)
+    slug = AutoSlugField(populate_from=user_slug_populate, unique=True, always_update=False, editable=False, max_length=255)
 
     objects = CustomUserManager()
 

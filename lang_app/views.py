@@ -1,6 +1,7 @@
 from django.contrib import messages
 from django.contrib.auth import authenticate, login as auth_login, update_session_auth_hash
 from django.contrib.auth.decorators import login_required
+from django.db.models import Prefetch
 from django.shortcuts import render, redirect, get_object_or_404
 from lang_app.models import MyUser, Blog, Post, Course, EnrolledCourses, CourseModule, CourseLesson
 from django.contrib.auth.hashers import check_password
@@ -202,7 +203,7 @@ def enroll_course(request,slug):
                 course_enrollment = EnrolledCourses.objects.create(student=student, course_name=course_name, course_level=course_level, is_enrolled=True)
                 course_enrollment.save()
                 messages.success(request, "You have successfully enrolled!")
-                return redirect("dashboard")
+                # return redirect("dashboard")
         except Exception as e:
             print(e)
     return render(request, 'enroll-course.html', {"course":course})
@@ -299,7 +300,7 @@ def settings_password_change(request):
         except Exception as e:
             print(e)
             messages.error(request, "An error was encountered while updating your password")
-    return render(request, 'settings-for-password-update.html')
+    return render(request, 'settings-for-password-update.html',{"user":user})
 
 @login_required
 def edit_profile_pic(request):
@@ -324,7 +325,18 @@ def payments(request):
 
 @login_required
 def find_partners(request):
-    return render(request, 'find-partners.html')
+    users = MyUser.objects.filter(
+        id__in=EnrolledCourses.objects.values('student').distinct().exclude(student=request.user)
+    ).prefetch_related(
+        Prefetch(
+            'students',
+            queryset=EnrolledCourses.objects.select_related('course_name')
+            .order_by('-enrolment_date'),
+            to_attr='user_courses'
+        )
+    )
+    context={"users":users}
+    return render(request, 'find-partners.html', context)
 
 @login_required
 def posts(request):
