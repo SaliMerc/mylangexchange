@@ -29,6 +29,8 @@ urlpatterns = [
     path('logout/', views.logout, name='logout'),
 
     path('find-partners/', views.find_partners, name='find-partners'),
+    path('message-partners/<slug:slug>/', views.message_partners, name='message-partners'),
+
     path('posts/', views.posts, name='posts'),
     path('chats/', views.chats, name='chats'),
 

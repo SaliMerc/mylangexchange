@@ -8,6 +8,8 @@ from django.contrib.auth.hashers import check_password
 import requests
 from user_agents import parse as parse_ua
 
+from django.db.models import Min
+
 # api starts here
 def get_client_ip(request):
     x_forwarded_for = request.META.get("HTTP_X_FORWARDED_FOR")
@@ -325,6 +327,12 @@ def payments(request):
 
 @login_required
 def find_partners(request):
+    languages = (
+        Course.objects
+        .values('course_name')
+        .annotate(min_id=Min('id'))
+        .order_by('course_name')
+    )
     users = MyUser.objects.filter(
         id__in=EnrolledCourses.objects.values('student').distinct().exclude(student=request.user)
     ).prefetch_related(
@@ -335,8 +343,26 @@ def find_partners(request):
             to_attr='user_courses'
         )
     )
-    context={"users":users}
+
+    query=request.GET.get('q')
+    if query:
+        users = MyUser.objects.filter(
+            id__in=EnrolledCourses.objects.values('student').distinct().exclude(student=request.user).filter(course_name__course_name__icontains=query)
+        ).prefetch_related(
+            Prefetch(
+                'students',
+                queryset=EnrolledCourses.objects.select_related('course_name')
+                .order_by('-enrolment_date'),
+                to_attr='user_courses'
+            )
+        )
+    context={"users":users,"languages":languages, "query":query}
     return render(request, 'find-partners.html', context)
+
+@login_required
+def message_partners(request, slug):
+    partner=get_object_or_404(MyUser, slug=slug)
+    return render(request, 'message-partners.html',{"partner":partner})
 
 @login_required
 def posts(request):

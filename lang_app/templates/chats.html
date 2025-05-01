@@ -1,7 +1,24 @@
 {% extends 'dashboard-base.html' %}
 {% load static %}
 {% block content %}
-<div class="logout-div sign-in-btn">
-    <p class="text-center profile-texts"><span class="">Coming soon😊</span></p>
-</div>
+      <h2 class="mb-5"><span class="a-link">My</span> Chats</h2>
+    {% for _ in '1234' %}
+    <a href="">
+    <div class="update-photo align-items-center mb-5 single-chat">
+        <div class="col-md-1">
+            {% if user.profile_picture %}
+                 <img src="{{ user.profile_picture.url }}" alt="photo" class="img-fluid display-pic">
+            {% else %}
+                 <img src="{% static 'images/dp.jpg' %}" alt="photo" class="img-fluid display-pic">
+            {% endif %}
+        </div>
+        <div class="col-md-6">
+            <h3 class="a-link">Jane Doe</h3>
+            <p class="">This is the very first chat</p>
+        </div>
+    </div>
+    </a>
+    {% empty %}
+        <p>You do not have any chat</p>
+    {% endfor %}
 {% endblock %}

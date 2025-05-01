@@ -4,8 +4,16 @@ const icon_description=document.getElementById('icon-description');
 const icons=document.getElementsByClassName('.all-icons');
 const main_content=document.getElementById('main-content');
 const search_form=document.getElementById('search-submit');
+const message_header=document.getElementById('message-header');
 
-
+ window.addEventListener('scroll', () => {
+                if (window.scrollY === 0) {
+                    message_header.style.top = '4rem';
+                } else {
+                    message_header.style.position = 'fixed';
+                    message_header.style.top = '0';
+                }
+            });
 if (window.innerWidth < 900) {
     dashboard.addEventListener('click', () => {
         dash_elements.style.display = 'block';
@@ -26,6 +34,7 @@ else {
              dash_elements.style.width = '5rem';
              main_content.style.marginLeft='5rem';
              main_content.style.width='90%';
+             message_header.style.left='6rem';
          }
         })
 }

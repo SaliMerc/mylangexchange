@@ -22,9 +22,6 @@ h4{
     font-size: 1.7rem;
     color: #E3E0C0;
 }
-select option{
-    background-color: #8F5932 !important;
-}
 p{
     font-family: "Poppins", sans-serif;
     font-size: 1.4rem;
@@ -322,6 +319,83 @@ form label{
 .profile-texts{
     font-size: 1.3rem;
 }
+
+/* Style the select box */
+select {
+  cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='%23f06d06'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+}
+
+select option{
+    background-color: #8F5932 !important;
+    color: #E3E0C0;
+}
+.searches{
+    justify-content: space-between;
+}
+#message-items{
+    background-color: #FBEC6C !important;
+    color: #000000 !important;
+    width: 9rem;
+    height: 5rem;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0.3rem 1.5rem 1rem #771818;
+    border: #8F5932 1px solid;
+    border-radius: 1rem 1rem 0 1rem;
+    z-index: 1;
+    font-size: 1.2rem;
+    justify-content: space-between;
+}
+.messages{
+    width: 100%;
+}
+.sender, .receiver{
+    padding: 0.5rem 2rem 0.5rem 2rem;
+    border-radius: 2rem 2rem 0 2rem;
+    box-shadow: 0.3rem 1.5rem 1rem #453021;
+    font-size: 1rem;
+    max-width: 70%;
+    min-height: 5rem;
+}
+.single-chat{
+    padding: 0.5rem 2rem 0.5rem 2rem;
+    border-radius: 2rem 2rem 0 2rem;
+    box-shadow: 0.3rem 1.5rem 1rem #453021;
+}
+.receiver{
+    align-self: flex-start;
+    background-color: #8F5932;
+}
+.sender{
+    align-self: flex-end;
+    background-color: #FBEC6C;
+}
+.sender p{
+    color: #8F5932;
+}
+#message-header{
+    position: fixed;
+    min-width: 70rem;
+    top: 4rem;
+    right: 1rem;
+    left: 24rem;
+}
+.message-sent{
+    position: fixed;
+    min-width: 70%;
+    height: 15rem;
+    top: 30rem;
+}
+.message-input{
+    height: 10rem;
+}
+.btn:focus{
+    outline: none;
+    border: none;
+}
 @media (max-width: 900px){
     /*navbar styling starts*/
     .nav-icon-img{
@@ -397,5 +471,12 @@ form label{
 }
     .page-heading{
         gap: 10rem;
+}
+    #message-header{
+        position: fixed;
+        min-width: 10rem;
+        top: 4rem;
+        right: 0;
+        left: 0;
 }
 }

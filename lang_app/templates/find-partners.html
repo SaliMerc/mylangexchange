@@ -2,18 +2,15 @@
 {% load static %}
 {% block content %}
     <h2>Find Partners</h2>
-    <div class="searches">
+    <div class="">
         <form action="" method="get" class="search-form">
             <div class="col-md-4">
-                <select name="" id="" class="form-control sign-in-btn-new">
+                <select name="q" id="" class="form-control sign-in-btn-new">
                     <option value="" disabled selected>Learning...</option>
-                    <option value=""></option>
-                </select>
-            </div>
-             <div class="col-md-4">
-                <select name="" id="" class="form-control sign-in-btn-new">
-                    <option value="" disabled selected>Speaking...</option>
-                    <option value=""></option>
+                    {% for language in languages %}
+                        <option value="{{ language.course_name }}">{{ language.course_name }}</option>
+                    {% endfor %}
+
                 </select>
             </div>
              <div class="col-md-3">
@@ -55,11 +52,15 @@
              </div>
          {% endfor %}
     </div>
-          <a href="" class="sign-in-btn-new mt-3">Message</a>
+          <a href="{% url 'message-partners' user.slug %}" class="sign-in-btn-new mt-3">Message</a>
     </div>
         </div>
         {% empty %}
-        <p>No partners available at the moment</p>
+        {% if query %}
+            <p>No partners learning <strong>{{ query }}</strong> at the moment</p>
+        {% else %}
+            <p>No partners available at the moment</p>
+        {% endif %}
     {% endfor %}
     </div>
 {% endblock %}
