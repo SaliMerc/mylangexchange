@@ -32,6 +32,8 @@ urlpatterns = [
     path('message-partners/<slug:slug>/', views.message_partners, name='message-partners'),
 
     path('posts/', views.posts, name='posts'),
+    path('posts/add-post/', views.add_post, name='add-post'),
+
     path('chats/', views.chats, name='chats'),
 
     path('account/payments/', views.payments, name='payments'),

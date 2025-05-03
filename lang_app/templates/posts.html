@@ -1,7 +1,31 @@
 {% extends 'dashboard-base.html' %}
 {% load static %}
 {% block content %}
-<div class="logout-div sign-in-btn">
-    <p class="text-center profile-texts"><span class="">Coming soon😊</span></p>
-</div>
+    <div class="post-items mt-1 blogs">
+    <div class="col-md-4 justify-content-between mb-5">
+    <div class="course-items add-and-edit-posts ">
+          <a href="{% url 'add-post' %}" class="sign-in-btn-new mt-3">
+              <div class="update-edit-photo align-items-center justify-content-center">
+                <div class="col-md-1">
+                    <img src="{% static 'images/add-post.svg' %}" alt="add-post">
+                </div>
+                <div class="col-md-5"><p class="mt-3">Add Post</p></div>
+            </div>
+          </a>
+    </div>
+    </div>
+    <div class="col-md-4 justify-content-between mb-5">
+    <div class="course-items add-and-edit-posts">
+           <a href="" class="sign-in-btn-new mt-3">
+              <div class="update-edit-photo align-items-center justify-content-center">
+                <div class="col-md-1">
+                    <img src="{% static 'images/view-post.svg' %}" alt="view posts">
+                </div>
+                <div class="col-md-5"><p class="mt-3">View Posts</p></div>
+            </div>
+          </a>
+    </div>
+    </div>
+    </div>
+    <h3 class="col-md-4 mt-3">My Posts</h3>
 {% endblock %}

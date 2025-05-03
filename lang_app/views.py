@@ -173,10 +173,17 @@ def blog_single_post_logged_in(request, slug):
 
 @login_required
 def all_courses(request):
-    user=request.user
     courses=Course.objects.all()
 
-    is_enrolled = EnrolledCourses.objects.filter(student=user)
+    # Getting a list of course IDs that the user is enrolled in
+    if request.user.is_authenticated:
+        enrolled_course_ids = EnrolledCourses.objects.filter(
+            student=request.user,
+            is_enrolled=True
+        ).values_list('course_name_id', flat=True)
+    else:
+        enrolled_course_ids = []
+
     courses_by_language = {}
     for course in courses:
         language = course.course_name
@@ -184,7 +191,7 @@ def all_courses(request):
             courses_by_language[language] = []
         courses_by_language[language].append(course)
 
-    context={'courses':courses,"courses_by_language":courses_by_language,"is_enrolled":is_enrolled}
+    context={'courses':courses,"courses_by_language":courses_by_language,"enrolled_course_ids":enrolled_course_ids}
     return render(request, 'all-courses.html', context)
 
 @login_required
@@ -367,6 +374,10 @@ def message_partners(request, slug):
 @login_required
 def posts(request):
     return render(request, 'posts.html')
+
+@login_required
+def add_post(request):
+    return render(request,'add-post.html')
 
 @login_required
 def chats(request):

@@ -1,0 +1,20 @@
+{% extends 'dashboard-base.html' %}
+{% load static %}
+{% block content %}
+    {% if messages %}
+            {% for message in messages %}
+                <p style="color: {% if message.tags == 'error' %}#d14d4d{% else %}#435a42{% endif %}; background-color: #FBEC6C; border-radius: 1rem" class="mx-5 p-3" id="alert-items">
+                    {{ message }}
+                </p>
+            {% endfor %}
+    {% endif %}
+    <form action="" method="post" enctype="multipart/form-data" class="dashboard-forms">
+    {% csrf_token %}
+        <h2> <span class="a-link">Add</span> Post</h2>
+        <label for="lang">Post Content</label>
+        <textarea id="lang" cols="30" rows="10" class="form-control sign-in-btn-new post-content" placeholder="Write your post content here" name="post-content" required></textarea>
+        <label for="lang-l">Post Images (if any)</label>
+        <input type="file" multiple id="lang-l" class="form-control sign-in-btn-new" placeholder="Language level" name="post-images">
+        <button type="submit" class="sign-in-btn-new mt-5 btn pe-5 ps-5">Post</button>
+    </form>
+{% endblock %}
