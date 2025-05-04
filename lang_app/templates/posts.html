@@ -35,7 +35,7 @@
                      <a href="{% url 'view-posts' %}" class="mb-3">
                         <div class="">
                             {% if post.post_author.profile_picture %}
-                            <img src="{{ post.post_author.profile_picture.url }}" alt="Refresh posts" class="img-fluid display-pic" loading="lazy">
+                            <img src="{{ post.post_author.profile_picture.url }}" alt="Author" class="img-fluid display-pic" loading="lazy">
                             {% else %}
                              <img src="{% static 'images/dp.jpg' %}" alt="Author image" class="img-fluid display-pic">
                             {% endif %}
