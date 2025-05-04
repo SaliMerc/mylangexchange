@@ -423,5 +423,24 @@ def view_posts(request):
     return render(request, 'view-posts.html',context)
 
 @login_required
+def edit_post(request, slug):
+    post=get_object_or_404(Post, slug=slug)
+    if request.method=="POST":
+        try:
+            post.post_content=request.POST.get("post-content")
+            post.save()
+            return redirect('posts')
+        except Exception as e:
+            messages.error(request, "An error was encountered while updating the post")
+            print(e)
+    return render(request, 'edit-post.html',{"post":post})
+
+@login_required
+def delete_post(request, slug):
+    post=get_object_or_404(Post, slug=slug)
+    post.delete()
+    return redirect('posts')
+
+@login_required
 def chats(request):
     return render(request, 'chats.html')

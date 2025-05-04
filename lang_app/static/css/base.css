@@ -340,12 +340,11 @@ select option{
     color: #000000 !important;
     width: 9rem;
     height: 5rem;
-    display: flex;
-    flex-direction: column;
+    display: none;
     box-shadow: 0.3rem 1.5rem 1rem #771818;
     border: #8F5932 1px solid;
     border-radius: 1rem 1rem 0 1rem;
-    z-index: 1;
+    z-index: 5;
     font-size: 1.2rem;
     justify-content: space-between;
 }

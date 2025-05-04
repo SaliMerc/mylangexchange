@@ -83,7 +83,7 @@ class Blog(models.Model):
 
 #To store the post data: each blog can have multiple images and is to be uploaded by a specific author
 def post_slug_populate(instance):
-    return f"{instance.post_author}-{instance.post_content}"
+    return {instance.post_content}
 class Post(models.Model):
     post_author=models.ForeignKey(MyUser,on_delete=models.CASCADE, related_name='post_author')
     post_content = models.TextField()

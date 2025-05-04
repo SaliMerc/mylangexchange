@@ -35,6 +35,9 @@ urlpatterns = [
     path('posts/add-post/', views.add_post, name='add-post'),
     path('posts/view-posts', views.view_posts, name='view-posts'),
 
+    path('posts/edit-post/<slug:slug>/', views.edit_post, name='edit-post'),
+    path('posts/delete-post/<slug:slug>/', views.delete_post, name='delete-post'),
+
     path('chats/', views.chats, name='chats'),
 
     path('account/payments/', views.payments, name='payments'),
