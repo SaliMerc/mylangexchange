@@ -1,6 +1,10 @@
+import json
+from django.utils import timezone
 from django.contrib import messages
 from django.contrib.auth import authenticate, login as auth_login, update_session_auth_hash
 from django.contrib.auth.decorators import login_required
+from django.core.files.base import ContentFile
+from django.core.files.storage import default_storage
 from django.db.models import Prefetch
 from django.shortcuts import render, redirect, get_object_or_404
 from lang_app.models import MyUser, Blog, Post, Course, EnrolledCourses, CourseModule, CourseLesson
@@ -136,7 +140,8 @@ def blog_single_content(request,slug):
     return render(request, 'blog-single-content.html', {"blog": blog})
 
 def dashboard_base(request):
-    return render(request, 'dashboard-base.html')
+    user=request.user
+    return render(request, 'dashboard-base.html', {"user":user})
 
 @login_required
 def main_dashboard(request):
@@ -373,11 +378,49 @@ def message_partners(request, slug):
 
 @login_required
 def posts(request):
-    return render(request, 'posts.html')
+    my_posts=Post.objects.filter(post_author=request.user).order_by('-created_at')
+    return render(request, 'posts.html',{"my_posts":my_posts})
 
 @login_required
 def add_post(request):
+    if request.method=="POST":
+        try:
+            post_content=request.POST.get("post-content")
+
+            post_image_urls=[]
+
+            if 'post-images' in request.FILES:
+                try:
+                    files=request.FILES.getlist("post-images")
+
+                    for file in files:
+                        # Defining the path where the file will be saved
+                        file_path = f"post_images/{timezone.now().strftime('%Y%m%d%H%M%S')}_{file.name}"
+
+                        # Save the file
+                        saved_path = default_storage.save(file_path, ContentFile(file.read()))
+
+                        # Get the URL of the saved file and add to our list
+                        post_image_urls.append(default_storage.url(saved_path))
+                except Exception as e:
+                    messages.error(request, "An error was encountered while uploading your post image")
+                    print(e)
+
+            Post.objects.create(
+                post_author=request.user,
+                post_content=post_content,
+                post_images=post_image_urls,
+            )
+            messages.success(request, "Your post was successfully added.")
+        except Exception as e:
+            print(e)
     return render(request,'add-post.html')
+
+@login_required
+def view_posts(request):
+    all_posts=Post.objects.all().order_by('-created_at')
+    context={"all_posts":all_posts}
+    return render(request, 'view-posts.html',context)
 
 @login_required
 def chats(request):

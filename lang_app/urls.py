@@ -33,6 +33,7 @@ urlpatterns = [
 
     path('posts/', views.posts, name='posts'),
     path('posts/add-post/', views.add_post, name='add-post'),
+    path('posts/view-posts', views.view_posts, name='view-posts'),
 
     path('chats/', views.chats, name='chats'),
 

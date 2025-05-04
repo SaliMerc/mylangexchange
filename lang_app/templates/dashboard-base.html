@@ -74,14 +74,24 @@
 </div>
 <div class="col-md-9 main-content" id="main-content">
 <div class="d-flex flex-column mt-4">
-    <div class="page-heading mb-4 text-left">
-        <div class="col-md-6">
+    <div class="post-items mb-4 ">
+        <div class="">
             <img src="{% static 'images/collapse-menu.svg' %}" alt="collapse-menu" id="collapse">
         </div>
-        <div class="col-md-6">
-            {% block welcome %}
-{#                for the main dashboard#}
-            {% endblock %}
+        <div class="">
+
+        <a href="{% url 'view-profile' %}">
+            <div class="update-edit-photo">
+                <div class="">
+                    {% if user.profile_picture %}
+                        <img src="{{ user.profile_picture.url }}" alt="Edit photo" class="mg-fluid display-pic">
+                    {% else %}
+                        <img src="{% static 'images/dp.jpg' %}" alt="Edit photo" class="mg-fluid display-pic">
+                    {% endif %}
+                </div>
+                <div class=""><p class="">{{ user.last_name}}</p></div>
+            </div>
+                 </a>
         </div>
     </div>
 {% block content %}

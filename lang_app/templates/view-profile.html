@@ -25,7 +25,7 @@
     </div>
     <p class="text-left profile-texts">Username: <span class="a-link">
         {% if not user.display_name %}
-              No added yet
+              Not added yet
         {% else %}
             {{ user.display_name|capfirst }}
         {% endif %}
@@ -34,7 +34,7 @@
     <p class="text-left profile-texts">Email: <span class="a-link">{{ user.email }}</span></p>
     <p class="text-left profile-texts">Phone Number: <span class="a-link">
          {% if not user.phone_number %}
-            No added yet
+            Not added yet
         {% else %}
             {{ user.phone_number }}
         {% endif %}

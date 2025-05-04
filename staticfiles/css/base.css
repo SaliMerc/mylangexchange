@@ -415,9 +415,20 @@ select option{
     font-size: 1rem;
     color: #000000;
 }
+.post-title-image{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
 .post-content{
     min-height: 30rem;
 }
+.post-image-singles{
+    width: 30%;
+    object-fit: cover;
+}
+
+
 @media (max-width: 900px){
     /*navbar styling starts*/
     .nav-icon-img{
@@ -500,5 +511,8 @@ select option{
         top: 4rem;
         right: 0;
         left: 0;
+}
+    .post-image-singles{
+        width: 100%;
 }
 }

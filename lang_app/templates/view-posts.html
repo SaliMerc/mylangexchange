@@ -1,0 +1,55 @@
+{% extends 'dashboard-base.html' %}
+{% load static %}
+{% block content %}
+            <div class="justify-content-center blog-content-page">
+                <a href="{% url 'view-posts' %}" class="post-title-image mb-4">
+                        <div class="">
+                            <img src="{% static 'images/refresh.svg' %}" alt="Refresh posts" class="img-fluid">
+                        </div>
+                        <div class="">
+                               <h2 class="mt-2">Refresh</h2>
+                        </div>
+                </a>
+            {% for post in all_posts %}
+        <div class="all-posts mt-5">
+            <div class="post-items align-items-center ">
+                <div class="">
+                     <a href="{% url 'view-posts' %}" class="mb-3">
+                        <div class="">
+                            {% if post.post_author.profile_picture %}
+                            <img src="{{ post.post_author.profile_picture.url }}" alt="Refresh posts" class="img-fluid display-pic" loading="lazy">
+                            {% else %}
+                             <img src="{% static 'images/dp.jpg' %}" alt="Author image" class="img-fluid display-pic">
+                            {% endif %}
+                        </div>
+                        <div class="">
+                               <p class="mt-2 a-link">{{ post.post_author.display_name|capfirst }}</p>
+                        </div>
+                </a>
+                </div>
+                <div class="d-flex flex-column">
+                    <p class="post-date">Posted on {{ post.created_at|date:'d-m-Y' }}</p>
+                    <p class="a-link post-date">Posted at {{ post.created_at|time:"h:i a" }}</p>
+                </div>
+            </div>
+            <div>
+                <p>
+                  {% autoescape off %}
+                      {{ post.post_content|linebreaks }}
+                  {% endautoescape %}
+                </p>
+            </div>
+            <div class="post-images">
+               {% if post.post_images %}
+                    {% for image_url in post.post_images %}
+                        <img src="{{ image_url }}" alt="Post image" class="post-image post-image-singles me-3 mb-3" loading="lazy">
+                    {% endfor %}
+               {% endif %}
+            </div>
+        </div>
+            {% empty %}
+                <p>You have not made any post yet</p>
+            {% endfor %}
+
+            </div>
+{% endblock %}
