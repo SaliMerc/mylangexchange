@@ -173,3 +173,13 @@ class CourseLesson(models.Model):
 
     def __str__(self):
         return self.lesson_description
+
+def message_slug_populate(instance):
+    return f"{instance.sender.first_name}-and-{instance.receiver.first_name}"
+class Message(models.Model):
+    sender=models.ForeignKey(MyUser,on_delete=models.CASCADE, related_name='sender')
+    receiver=models.ForeignKey(MyUser,on_delete=models.CASCADE, related_name='receiver')
+    message_content=models.TextField()
+    message_sent_at=models.DateTimeField(auto_now_add=True)
+    is_read=models.BooleanField(default=False)
+    slug = AutoSlugField(populate_from=message_slug_populate, unique=True, always_update=False, editable=False)

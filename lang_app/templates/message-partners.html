@@ -3,11 +3,11 @@
 {% block content %}
     <div class="searches search-form mb-3" id="message-header">
         <div class="">
-            <a href="">
+            <a href="{% url 'chats' %}">
                 <img src="{% static 'images/back-to-messages.svg' %}" alt="back-to-chats">
             </a>
         </div>
-        <div class=""><p class="a-link">{{ partner.first_name }} {{ partner.last_name }}</p></div>
+        <div class=""><p class="a-link">{{ partner.display_name|capfirst }}</p></div>
         <div class="">
             <div class="d-flex flex-column">
                  <a href="" class="col-md-1">

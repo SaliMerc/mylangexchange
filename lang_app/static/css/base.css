@@ -359,6 +359,15 @@ select option{
     max-width: 70%;
     min-height: 5rem;
 }
+.profile-and-name{
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+.my-chat-singles{
+    display: flex;
+    justify-content: space-between;
+}
 .single-chat{
     padding: 0.5rem 2rem 0.5rem 2rem;
     border-radius: 2rem 2rem 0 2rem;

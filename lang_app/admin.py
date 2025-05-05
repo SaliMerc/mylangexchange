@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import MyUser, Blog, Course, EnrolledCourses, CourseModule, CourseLesson,Post
+from .models import MyUser, Blog, Course, EnrolledCourses, CourseModule, CourseLesson,Post, Message
 
 @admin.register(MyUser)
 class MyUserModelAdmin(admin.ModelAdmin):
@@ -28,3 +28,7 @@ class CourseLessonModelAdmin(admin.ModelAdmin):
 @admin.register(Post)
 class PostModelAdmin(admin.ModelAdmin):
     list_display = ("post_author","post_content","post_images")
+
+@admin.register(Message)
+class MessageModelAdmin(admin.ModelAdmin):
+    list_display = ("sender","receiver","message_content","message_sent_at")

@@ -5,9 +5,9 @@ from django.contrib.auth import authenticate, login as auth_login, update_sessio
 from django.contrib.auth.decorators import login_required
 from django.core.files.base import ContentFile
 from django.core.files.storage import default_storage
-from django.db.models import Prefetch
+from django.db.models import Prefetch, Q
 from django.shortcuts import render, redirect, get_object_or_404
-from lang_app.models import MyUser, Blog, Post, Course, EnrolledCourses, CourseModule, CourseLesson
+from lang_app.models import MyUser, Blog, Post, Course, EnrolledCourses, CourseModule, CourseLesson, Message
 from django.contrib.auth.hashers import check_password
 import requests
 from user_agents import parse as parse_ua
@@ -372,11 +372,6 @@ def find_partners(request):
     return render(request, 'find-partners.html', context)
 
 @login_required
-def message_partners(request, slug):
-    partner=get_object_or_404(MyUser, slug=slug)
-    return render(request, 'message-partners.html',{"partner":partner})
-
-@login_required
 def posts(request):
     my_posts=Post.objects.filter(post_author=request.user).order_by('-created_at')
     return render(request, 'posts.html',{"my_posts":my_posts})
@@ -443,4 +438,26 @@ def delete_post(request, slug):
 
 @login_required
 def chats(request):
-    return render(request, 'chats.html')
+    user = request.user
+    all_messages = Message.objects.filter(Q(sender=user) | Q(receiver=user)).order_by('-message_sent_at')
+
+    conversation_partners = set()
+    last_messages = []
+
+    for msg in all_messages:
+        if msg.sender == user:
+            partner = msg.receiver
+        else:
+            partner = msg.sender
+
+        if partner.id not in conversation_partners:
+            conversation_partners.add(partner.id)
+            last_messages.append(msg)
+
+    context = {"user_chats": last_messages}
+    return render(request, 'chats.html',context)
+
+@login_required
+def message_partners(request, slug):
+    partner=get_object_or_404(MyUser, slug=slug)
+    return render(request, 'message-partners.html',{"partner":partner})
