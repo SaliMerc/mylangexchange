@@ -20,23 +20,38 @@
             </div>
         </div>
     </div>
-    {% for _ in '123' %}
-    <div class="messages d-flex flex-column mt-5">
+    <div class="messages d-flex flex-column mt-5" id="chat">
+    <p class="text-center mt-5 a-link">Conversation between {{ partner.display_name|capfirst }} and {{ user.display_name|capfirst }}</p>
+         {% for message in user_messages %}
+             {% if message.sender != request.user %}
         <div class="receiver mt-5">
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor, nisl eget ultricies tincidunt, nisl nisl aliquam nisl, eget ultricies nisl nisl eget nisl. Nullam auctor, nisl eget ultricies tincidunt, nisl nisl aliquam nisl, eget ultricies nisl nisl eget nisl.</p>
+            <p>{{ message.message_content }}</p>
+            <p class="small-date a-link chat-date" data-sent-time="{{ message.message_sent_at|date:'c' }}"></p>
         </div>
+             {% else %}
         <div class="sender mt-5">
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor, nisl eget ultricies tincidunt, nisl nisl aliquam nisl, eget ultricies nisl nisl eget nisl. Nullam auctor, nisl eget ultricies tincidunt, nisl nisl aliquam nisl, eget ultricies nisl nisl eget nisl.</p>
+            <p>{{ message.message_content }}</p>
+            <p class="small-date chat-date" data-sent-time="{{ message.message_sent_at|date:'c' }}"></p>
         </div>
+             {% endif %}
+             {% empty %}
+             <p>Start a conversation with {{ partner.display_name|capfirst }}😊</p>
+        {% endfor %}
     </div>
-    {% endfor %}
     <div class="mt-5 d-flex align-items-center justify-content-center">
-        <form action="" method="post" enctype="multipart/form-data" class="search-form message-sent">
+        <form action="{% url 'message-partners' slug=partner.slug %}" method="post" enctype="multipart/form-data" class="search-form message-sent">
         {% csrf_token %}
-            <input type="text" class="form-control sign-in-btn-new message-input" placeholder="Type your message">
+            <button type="button" class="btn">
+                <img src="{% static 'images/emoji1.svg' %}" alt="emoji" id="emoji-picker-btn">
+            </button>
+            <emoji-picker id="emoji-picker"></emoji-picker>
+            <textarea name="message-content" cols="30" rows="5" class="form-control sign-in-btn-new message-input" placeholder="Type your message" id="emoji-input"></textarea>
             <button type="submit" class="btn">
                 <img src="{% static 'images/send-btn.svg' %}" alt="">
             </button>
         </form>
     </div>
+{% endblock %}
+{% block scripts %}
+
 {% endblock %}

@@ -1,8 +1,11 @@
+from datetime import timedelta
+
 from django.core.exceptions import ValidationError
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.db.models import CharField
 from django.contrib.auth.models import BaseUserManager
+from django.utils import timezone
 from django.utils.text import slugify
 from autoslug import AutoSlugField
 
@@ -183,3 +186,6 @@ class Message(models.Model):
     message_sent_at=models.DateTimeField(auto_now_add=True)
     is_read=models.BooleanField(default=False)
     slug = AutoSlugField(populate_from=message_slug_populate, unique=True, always_update=False, editable=False)
+
+    def __str__(self):
+        return self.message_content

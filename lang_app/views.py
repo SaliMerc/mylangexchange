@@ -460,4 +460,21 @@ def chats(request):
 @login_required
 def message_partners(request, slug):
     partner=get_object_or_404(MyUser, slug=slug)
-    return render(request, 'message-partners.html',{"partner":partner})
+    user=request.user
+    user_messages = Message.objects.filter(
+        Q(sender=user, receiver=partner) | Q(sender=partner, receiver=user)
+    ).order_by('message_sent_at')
+
+    if request.method=="POST":
+        try:
+            message_content=request.POST.get("message-content")
+            Message.objects.create(
+                sender=user,
+                receiver=partner,
+                message_content=message_content,
+            )
+        except Exception as e:
+            messages.error(request, "An error was encountered while sending your message")
+            print(e)
+
+    return render(request, 'message-partners.html',{"partner":partner,"user_messages":user_messages})

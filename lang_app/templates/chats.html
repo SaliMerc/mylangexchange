@@ -10,7 +10,7 @@
         {% endif %}
     <div class="mb-5 single-chat align-items-center my-chat-singles">
         <div class="profile-and-name">
-            <div class="">
+            <div class="my-chat-overview">
             {% if chat.receiver == request.user %}
                 {% if chat.sender.profile_picture %}
                      <img src="{{ chat.sender.profile_picture.url }}" alt="photo" class="img-fluid display-pic">
@@ -25,7 +25,7 @@
                 {% endif %}
             {% endif %}
             </div>
-            <div class="">
+            <div class="my-chat-content">
                 <h3 class="a-link">
                     {% if chat.receiver == request.user %}
                         {{ chat.sender.display_name|capfirst }}
@@ -36,8 +36,8 @@
                 <p class="">{{ chat.message_content|capfirst|truncatewords:6 }}</p>
             </div>
         </div>
-        <div class="">
-            <p class="small-date a-link">{{ chat.message_sent_at|date:'d/m/y' }}</p>
+        <div class="my-chat-content">
+            <p class="small-date a-link chat-date" data-sent-time="{{ chat.message_sent_at|date:'c' }}"></p>
         </div>
     </div>
     </a>
