@@ -145,10 +145,13 @@ def dashboard_base(request):
 
 @login_required
 def main_dashboard(request):
-    enrolled_courses=EnrolledCourses.objects.filter(student=request.user,is_completed=False).order_by('-enrolment_date')[:3]
-    completed_courses = EnrolledCourses.objects.filter(student=request.user,is_completed=True).order_by('-enrolment_date')[:3]
-    context={"enrolled_courses":enrolled_courses, "completed_courses":completed_courses}
-    return render(request, 'main-dashboard.html', context)
+    if request.user.is_authenticated:
+        enrolled_courses=EnrolledCourses.objects.filter(student=request.user,is_completed=False).order_by('-enrolment_date')[:3]
+        completed_courses = EnrolledCourses.objects.filter(student=request.user,is_completed=True).order_by('-enrolment_date')[:3]
+        context={"enrolled_courses":enrolled_courses, "completed_courses":completed_courses}
+        return render(request, 'main-dashboard.html', context)
+    else:
+        return redirect('login')
 
 @login_required
 def ongoing_courses(request):

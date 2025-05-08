@@ -20,7 +20,7 @@
                  {% if course.id in enrolled_course_ids %}
                      <a href="{% url 'course-modules' course.slug %}" class="sign-in-btn-new mt-5 continue-learning">Continue Learning</a></div>
                  {% else %}
-                     <a href="{% url 'enroll-course' course.slug %}" class="sign-in-btn-new mt-5">Enroll Now</a></div>
+                     <a href="{% url 'enroll-course' course.slug %}" class="sign-in-btn-new mt-5">Enroll</a></div>
                  {% endif %}
         </div>
         {% empty %}

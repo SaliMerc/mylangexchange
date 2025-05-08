@@ -48,12 +48,12 @@
                 <div class=" d-flex flex-column">
                        <div class="d-flex flex-column">
                              <div class="">
-                                 <button class="post-options btn">
+                                 <button class="post-options btn" data-target="message-items-1">
                                      <img src="{% static 'images/message-options.svg' %}" alt="options">
                                  </button>
 
                             </div>
-                            <ul class="m-items" id="message-items">
+                            <ul class="m-items message-items" id="message-items">
                                 <li class="mb-3"><a href="{% url 'delete-post' post.slug %}">Delete Post</a></li>
                                 <li><a href="{% url 'edit-post' post.slug %}">Edit Post</a></li>
                             </ul>
@@ -79,4 +79,17 @@
           {% empty %}
           <p>You have not made any posts yet</p>
             {% endfor %}
+{% endblock %}
+{% block scripts %}
+    <script>
+    document.querySelectorAll('.post-options').forEach(button => {
+  button.addEventListener('click', function() {
+    const messageItems = document.getElementById('message-items');
+
+    if (messageItems) {
+      messageItems.style.display = messageItems.style.display === 'none' ? 'block' : 'none';
+    }
+  });
+});
+    </script>
 {% endblock %}

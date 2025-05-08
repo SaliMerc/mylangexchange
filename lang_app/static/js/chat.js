@@ -20,34 +20,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // to display the users time not the servers
 document.addEventListener("DOMContentLoaded", () => {
-    document.querySelectorAll('.chat-date').forEach(el => {
-      const sentTime = new Date(el.dataset.sentTime);
-      const now = new Date();
+  document.querySelectorAll('.chat-date').forEach(el => {
+    const sentTime = new Date(el.dataset.sentTime);
+    const now = new Date();
 
-      const sameDay = sentTime.toDateString() === now.toDateString();
-      const yesterday = (new Date(now.setDate(now.getDate() - 1))).toDateString() === sentTime.toDateString();
+    const sameDay = sentTime.toDateString() === now.toDateString();
+    const yesterday = (new Date(now.setDate(now.getDate() - 1))).toDateString() === sentTime.toDateString();
 
-      let formatted = "";
+    let formatted = "";
 
-      if (sameDay) {
-        formatted = sentTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-      } else if (yesterday) {
-        formatted = "Yesterday at " + sentTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-      } else {
-        formatted = sentTime.toLocaleDateString();
-      }
+    if (sameDay) {
+      formatted = sentTime.toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'});
+    } else if (yesterday) {
+      formatted = "Yesterday at " + sentTime.toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'});
+    } else {
+      formatted = sentTime.toLocaleDateString();
+    }
 
-      el.textContent = formatted;
-    });
+    el.textContent = formatted;
   });
+});
 
-// to scroll to the last message in the chat when i open the chat
-  window.addEventListener("load", () => {
-    setTimeout(() => {
-      const chat = document.getElementById('chat');
-      if (chat) {
-        chat.scrollTop = chat.scrollHeight;
-        console.log("Scrolled to:", chat.scrollTop); // debug line
-      }
-    }, 100); // wait a moment to ensure DOM is painted
-  });
+
+// for the chat options btn and the posts more btn
