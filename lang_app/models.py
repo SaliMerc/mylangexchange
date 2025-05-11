@@ -170,6 +170,7 @@ class CourseLesson(models.Model):
     lesson_transcript = models.TextField(blank=True, null=True)
     lesson_content = models.TextField(blank=True, null=True)
     lesson_duration = models.FloatField(blank=True, null=True, help_text="Duration of the lesson in seconds")
+    lesson_completed=models.BooleanField(default=False)
     slug = AutoSlugField(populate_from=lesson_slug_populate, unique=True, always_update=False, editable=False)
 
     # use moviepy to extract the video and audio lengths nly if the content type is either  video or audio but for the read content you add the estimated duration it would take the user to complete the lesson

@@ -20,6 +20,16 @@
                     </p>
                 {% endif %}
 
+                 {% if current_lesson.lesson_completed %}
+                     <a href="" class="sign-in-btn-new btn pe-3 ps-3 mb-3 lesson-completed">
+                        <i class="fa-solid fa-check a-link"></i> Mark Completed
+                     </a>
+                 {% else %}
+                     <a href="" class="sign-in-btn-new btn pe-3 ps-3 mb-3 lesson-completed">
+                         Completed
+                     </a>
+                 {% endif %}
+
 {#            if there is a next lesson#}
                 {% if next_lesson %}
                     <a href="{% url 'lesson-content' slug=next_lesson.slug %}" class="sign-in-btn-new btn pe-3 ps-3 mb-3">Next Lesson</a>
@@ -56,6 +66,7 @@
                     </p>
                 {% endif %}
 
+             <a href="" class="sign-in-btn-new btn pe-3 ps-3 mb-3 lesson-completed"><i class="fa-solid fa-check a-link"></i> Mark Complete</a>
 {#            if there is a next lesson#}
                 {% if next_lesson %}
                     <a href="{% url 'lesson-content' slug=next_lesson.slug %}" class="sign-in-btn-new btn pe-3 ps-3 mb-3">Next Lesson</a>
@@ -98,7 +109,7 @@
                         First Lesson
                     </p>
                 {% endif %}
-
+                <a href="" class="sign-in-btn-new btn pe-3 ps-3 mb-3 lesson-completed"><i class="fa-solid fa-check a-link"></i> Mark Complete</a>
 {#            if there is a next lesson#}
                 {% if next_lesson %}
                     <a href="{% url 'lesson-content' slug=next_lesson.slug %}" class="sign-in-btn-new btn pe-3 ps-3 mb-3">Next Lesson</a>

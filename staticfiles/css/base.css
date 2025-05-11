@@ -447,6 +447,10 @@ select option{
     bottom: 13rem;
     box-shadow: 0 4px 12px rgba(0,0,0,0.2);
 }
+.lesson-completed{
+    background-color: #8F5932;
+    color: #E3E0C0;
+}
 
 @media (max-width: 900px){
     /*navbar styling starts*/
