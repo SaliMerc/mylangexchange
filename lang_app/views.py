@@ -7,7 +7,7 @@ from django.core.files.base import ContentFile
 from django.core.files.storage import default_storage
 from django.db.models import Prefetch, Q
 from django.shortcuts import render, redirect, get_object_or_404
-from lang_app.models import MyUser, Blog, Post, Course, EnrolledCourses, CourseModule, CourseLesson, Message
+from lang_app.models import MyUser, Blog, Post, Course, EnrolledCourses, CourseModule, CourseLesson, Message,LessonCompletion
 from django.contrib.auth.hashers import check_password
 import requests
 from user_agents import parse as parse_ua
@@ -249,6 +249,11 @@ def module_lessons(request,slug):
 def lesson_content(request,slug):
     current_lesson=get_object_or_404(CourseLesson, slug=slug)
 
+    is_completed = LessonCompletion.objects.filter(
+        lesson_student=request.user,
+        lesson=current_lesson
+    ).exists()
+
     # Get the next lesson in the same module
     next_lesson = CourseLesson.objects.filter(
         module_name=current_lesson.module_name,  # Same module
@@ -264,10 +269,35 @@ def lesson_content(request,slug):
     context = {
         "current_lesson": current_lesson,
         "next_lesson": next_lesson,
-        "prev_lesson": prev_lesson  # Optional
+        "prev_lesson": prev_lesson,
+        "is_completed": is_completed,
     }
 
     return render(request, 'lesson-content-page.html',context)
+
+@login_required
+def toggle_lesson_completion(request,slug):
+    lesson=get_object_or_404(CourseLesson, slug=slug)
+    if request.method=="POST":
+        try:
+            # Checking if completion record already exists
+            completion, created = LessonCompletion.objects.get_or_create(
+                lesson_student=request.user,
+                lesson=lesson
+            )
+            if not created:
+                # If already exists, delete it
+                completion.delete()
+                messages.success(request, "Lesson marked as incomplete😒")
+            else:
+                messages.success(request, "Lesson completed🎉🎉")
+        except Exception as e:
+            messages.error(request, "An error occurred while marking lesson complete, try again")
+            print(e)
+    else:
+        messages.error(request, "An error was encountered while submitting the form")
+
+    return redirect('lesson-content', slug=slug)
 
 @login_required
 def view_profile(request):

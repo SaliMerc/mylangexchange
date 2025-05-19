@@ -178,6 +178,17 @@ class CourseLesson(models.Model):
     def __str__(self):
         return self.lesson_description
 
+class LessonCompletion(models.Model):
+    lesson_student = models.ForeignKey(MyUser, on_delete=models.CASCADE, related_name='lesson_student')
+    lesson=models.ForeignKey(CourseLesson, on_delete=models.CASCADE, related_name='lessons')
+    completed_at=models.DateTimeField(auto_now_add=True)
+
+    unique_together = ('lesson_student', 'lesson')
+
+    def __str__(self):
+        return f"{self.lesson_student.username} completed {self.lesson.lesson_description}"
+
+
 def message_slug_populate(instance):
     return f"{instance.sender.first_name}-and-{instance.receiver.first_name}"
 class Message(models.Model):

@@ -151,6 +151,10 @@ form{
     min-width: 60%;
     min-height: 100vh;
 }
+.this-form{
+    min-width: 3%;
+    min-height: 5vh;
+}
 form label{
     padding-top: 1.5rem;
     color: #000000;

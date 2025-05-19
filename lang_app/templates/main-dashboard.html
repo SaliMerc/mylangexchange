@@ -33,18 +33,18 @@
     {% endfor %}
     </div>
 {#    for the progress charts #}
-     <h3 class="col-md-4">My Learning Charts</h3>
+     <h3 class="col-md-4 a-link">My Learning Charts</h3>
     <div class="row mt-1 blogs">
 {#        the line chart#}
     <div class="col-md-6 justify-content-between mb-5">
     <div class="course-items charts">
-       <p>The line chart will be here</p>
+       <canvas id="weeklyChart" style="width: 90% !important; height: 100% !important;"></canvas>
     </div>
     </div>
 {#        the bar chart#}
      <div class="col-md-6 justify-content-between mb-5">
     <div class="course-items charts">
-       <p>The bar chart will be here</p>
+       <canvas id="yearlyChart" style="width: 90% !important; height: 100% !important;"></canvas>
     </div>
     </div>
     </div>
@@ -80,4 +80,156 @@
     {% endfor %}
     </div>
     </section>
+{% endblock %}
+
+{#for metric graphs#}
+{% block scripts %}
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+    const weeklyCtx = document.getElementById('weeklyChart').getContext('2d');
+    const yearlyBarCtx = document.getElementById('yearlyChart').getContext('2d');
+    const canvas=document.getElementById('yearlyChart')
+
+    var weekly_metrics_data = [12, 15, 13, 17, 20, 18, 16];
+    var yearly_metrics_data= [32, 29, 34, 36, 39, 41, 43, 42, 40, 30, 37, 45];
+
+    const maxWeeklyData = Math.max(...weekly_metrics_data.filter(value => value !== null))+10;
+    const maxYearlyData = Math.max(...yearly_metrics_data.filter(value => value !== null))+10;
+
+    var weekly_labels = ["Mon", "Tue", "Wed", "Thur", "Fri", "Sat", "Sun"];
+    var yearly_labels = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+                     "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+
+    const gradient = yearlyBarCtx.createLinearGradient(0, 0, 0, 400);
+    gradient.addColorStop(0, '#E3E0C0');
+    gradient.addColorStop(0.1, '#FBEC6C');
+    gradient.addColorStop(1, '#6D3710');
+
+    {#for the line graph#}
+      const weeklyChart = new Chart(weeklyCtx, {
+            type: 'line',
+            data: {
+                labels: weekly_labels,
+                datasets: [
+                    {
+                    label: 'Lessons completed',
+                    data: weekly_metrics_data,
+                    backgroundColor: '#E3E0C0',
+                    borderColor: '#E3E0C0',
+                    borderWidth: 1,
+                    spanGaps: true,
+                }
+                ]
+            },
+             options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { position: "top",
+                        labels: {
+                            usePointStyle:true,
+                            color: '#E3E0C0'
+                        }
+                    },
+                    title: {
+                        display: true,
+                        align: 'center',
+                        font: {
+                            size: 21,
+                            weight: 'bold',
+                        },
+                        color: '#E3E0C0',
+                        text: "This Week",
+                    }
+                },
+                scales: {
+                        x: {
+                        beginAtZero: false,
+                        min: 0,
+                        ticks: {
+                            color: '#E3E0C0'
+                        },
+                        grid: {
+                            color: '#a38e8e'
+                        }
+                    },
+                    y: {
+                        beginAtZero: true,
+                        min: 0,
+                        max: maxWeeklyData,
+                         ticks: {
+                            color: '#E3E0C0'
+                        },
+                        grid: {
+                            display: false,
+                        },
+                    }
+                }
+            }
+        });
+
+    {#for the bar graph#}
+    const monthlyBarChart = new Chart(yearlyBarCtx, {
+            type: 'bar',
+            data: {
+                labels: yearly_labels,
+                datasets: [
+                    {
+                    label: 'Lessons Completed',
+                    data: yearly_metrics_data,
+                    backgroundColor: gradient,
+                    borderColor: gradient,
+                    borderWidth: 1
+                }
+                ]
+            },
+             options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { position: "top",
+                        labels: {
+                            usePointStyle:true,
+                            color: '#E3E0C0',
+                        }
+                    },
+                    title: {
+                        display: true,
+                        align: 'center',
+                        font: {
+                            size: 21,
+                            weight: 'bold',
+                        },
+                        color: '#E3E0C0',
+                        text: "This Year",
+                    }
+                },
+                scales: {
+                        x: {
+                        beginAtZero: false,
+                        min: 0,
+                        ticks: {
+                            color: '#E3E0C0'
+                        },
+                        grid: {
+                            display: false,
+                        },
+                    },
+                    y: {
+                        beginAtZero: true,
+                        min: 0,
+                        max: maxYearlyData,
+                        ticks: {
+                            color: '#E3E0C0'
+                        },
+                        grid: {
+                            display: false,
+                        },
+                    }
+                }
+            }
+        });
+
+    </script>
 {% endblock %}

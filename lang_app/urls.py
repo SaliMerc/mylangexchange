@@ -24,6 +24,7 @@ urlpatterns = [
     path('courses/learn/modules/<slug:slug>/', views.module_lessons, name='module-lessons'),
     path('courses/learn/modules/lesson/<slug:slug>/', views.lesson_content, name='lesson-content'),
 
+    path('courses/learn/modules/lesson-completion-status/<slug:slug>/', views.toggle_lesson_completion, name='lesson-complete'),
 
     path('dashboard/', views.main_dashboard, name='dashboard'),
     path('logout/', views.logout, name='logout'),
